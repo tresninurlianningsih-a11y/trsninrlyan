@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galeri Foto & Prestasi SMK Negeri 6 Kendari. Lihat dokumentasi kegiatan belajar mengajar, fasilitas sarana sekolah, serta pencapaian prestasi akademik siswa.">
+  <title>Galeri & Prestasi - SMK Negeri 6 Kendari</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- TOP CONTACT BAR -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-contacts">
+        <span><i class="fa-solid fa-phone"></i> +62 (401) 123-4567</span>
+        <span><i class="fa-solid fa-envelope"></i> info@smkn6kendari.sch.id</span>
+        <span><i class="fa-solid fa-location-dot"></i> Lepo-Lepo, Baruga, Kendari</span>
+      </div>
+      <div class="top-socials">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.jpg" alt="Logo SMKN 6 Kendari" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-title">SMK NEGERI 6 KENDARI</span>
+          <span class="logo-subtitle">Unggul · Berbudaya · Berkarakter</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="profil.html" class="nav-link">Profil</a></li>
+          <li class="nav-item"><a href="jurusan.html" class="nav-link">Kompetensi Keahlian</a></li>
+          <li class="nav-item active"><a href="galeri.html" class="nav-link">Galeri</a></li>
+          <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Buka Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- PAGE BANNER -->
+  <section class="page-banner">
+    <div class="container">
+      <h1 class="page-title">Galeri & Prestasi</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Galeri Sekolah</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY GALLERY SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      
+      <!-- Gallery Filter Buttons -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">Semua Foto</button>
+        <button class="filter-btn" data-filter="kegiatan">Kegiatan Belajar</button>
+        <button class="filter-btn" data-filter="fasilitas">Fasilitas</button>
+        <button class="filter-btn" data-filter="prestasi">Prestasi Siswa</button>
+      </div>
+
+      <!-- Photos Grid -->
+      <div class="gallery-grid">
+        
+        <!-- Item 1: RPL -->
+        <a href="#" class="gallery-item" data-category="kegiatan">
+          <img src="assets/rpl.jpg" alt="Kegiatan pemrograman">
+          <div class="gallery-overlay">
+            <h4 class="gallery-item-title">Kelas Pemrograman Web RPL</h4>
+            <span class="gallery-item-category">Kegiatan Belajar</span>
+          </div>
+        </a>
+
+        <!-- Item 2: Listrik -->
+        <a href="#" class="gallery-item" data-category="kegiatan">
+          <img src="assets/listrik.jpg" alt="Instalasi listrik">
+          <div class="gallery-overlay">
+            <h4 class="gallery-item-title">Praktik Panel Daya Kelistrikan</h4>
+            <span class="gallery-item-category">Kegiatan Belajar</span>
+          </div>
+        </a>
+
+        <!-- Item 3: Geologi -->
+        <a href="#" class="gallery-item" data-category="fasilitas">
+          <img src="assets/geologi.jpg" alt="Laboratorium batuan">
+          <div class="gallery-overlay">
+            <h4 class="gallery-item-title">Koleksi Mineral Geologi</h4>
+            <span class="gallery-item-category">Fasilitas</span>
+          </div>
+        </a>
+
+        <!-- Item 4: Lab Kimia -->
+        <a href="#" class="gallery-item" data-category="kegiatan">
+          <img src="assets/lab.jpg" alt="Lab pengujian kimia">
+          <div class="gallery-overlay">
+            <h4 class="gallery-item-title">Praktikum Kimia Kuantitatif</h4>
+            <span class="gallery-item-category">Kegiatan Belajar</span>
+          </div>
+        </a>
+
+        <!-- Item 5: Hero / Gedung -->
+        <a href="#" class="gallery-item" data-category="fasilitas">
+          <img src="assets/hero_bg.jpg" alt="Gedung sekolah">
+          <div class="gallery-overlay">
+            <h4 class="gallery-item-title">Fasad Klasik Gedung Utama</h4>
+            <span class="gallery-item-category">Fasilitas</span>
+          </div>
+        </a>
+
+        <!-- Item 6: Prestasi -->
+        <a href="#" class="gallery-item" data-category="prestasi">
+          <img src="assets/principal.jpg" alt="Penghargaan">
+          <div class="gallery-overlay">
+            <h4 class="gallery-item-title">Penghargaan Sekolah Vokasi Berprestasi</h4>
+            <span class="gallery-item-category">Prestasi Siswa</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL (POPUP DISPLAY) -->
+  <div id="lightbox" class="lightbox-modal">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+      <img src="" alt="" class="lightbox-img">
+      <div class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="assets/logo.jpg" alt="Logo SMKN 6" class="footer-logo-img">
+          <div class="footer-logo-text">
+            <span class="footer-logo-title">SMKN 6 KENDARI</span>
+            <span class="footer-logo-subtitle">Sekolah Vokasi Terbaik</span>
+          </div>
+        </div>
+        <p class="footer-about-text">SMK Negeri 6 Kendari berkomitmen tinggi dalam mencetak tenaga kerja terampil berstandar industri dengan penguatan budi pekerti yang berlandaskan kearifan lokal.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Tautan Cepat</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Beranda</a></li>
+          <li><a href="profil.html"><i class="fa-solid fa-chevron-right"></i> Profil Sekolah</a></li>
+          <li><a href="jurusan.html"><i class="fa-solid fa-chevron-right"></i> Kompetensi Keahlian</a></li>
+          <li><a href="galeri.html"><i class="fa-solid fa-chevron-right"></i> Galeri Kegiatan</a></li>
+          <li><a href="kontak.html"><i class="fa-solid fa-chevron-right"></i> Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Hubungi Kami</h4>
+        <ul class="footer-contacts">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Jl. Komjen. Dr. H. M. Yasin, Lepo-Lepo, Kec. Baruga, Kota Kendari, Sulawesi Tenggara 93116</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <span>+62 (401) 123-4567<br>+62 823-4567-8901</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <span>info@smkn6kendari.sch.id<br>humas@smkn6kendari.sch.id</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 SMK Negeri 6 Kendari. All Rights Reserved. Designed for Classic Academic Excellence.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

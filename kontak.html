@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kontak SMK Negeri 6 Kendari. Hubungi administrasi sekolah, ajukan pertanyaan melalui formulir kontak, lihat lokasi peta Google, dan baca daftar pertanyaan umum (FAQ).">
+  <title>Hubungi Kami - SMK Negeri 6 Kendari</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- TOP CONTACT BAR -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-contacts">
+        <span><i class="fa-solid fa-phone"></i> +62 (401) 123-4567</span>
+        <span><i class="fa-solid fa-envelope"></i> info@smkn6kendari.sch.id</span>
+        <span><i class="fa-solid fa-location-dot"></i> Lepo-Lepo, Baruga, Kendari</span>
+      </div>
+      <div class="top-socials">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.jpg" alt="Logo SMKN 6 Kendari" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-title">SMK NEGERI 6 KENDARI</span>
+          <span class="logo-subtitle">Unggul · Berbudaya · Berkarakter</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="profil.html" class="nav-link">Profil</a></li>
+          <li class="nav-item"><a href="jurusan.html" class="nav-link">Kompetensi Keahlian</a></li>
+          <li class="nav-item"><a href="galeri.html" class="nav-link">Galeri</a></li>
+          <li class="nav-item active"><a href="kontak.html" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Buka Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- PAGE BANNER -->
+  <section class="page-banner">
+    <div class="container">
+      <h1 class="page-title">Hubungi Kami</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Hubungi Kami</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CONTENT SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <!-- Column Left: Contact Details Info -->
+        <div class="contact-info-column">
+          
+          <!-- Card 1: Main Office -->
+          <div class="contact-info-card">
+            <h3 class="contact-info-card-title"><i class="fa-solid fa-school"></i> Sekretariat Utama</h3>
+            <div class="contact-info-detail">
+              <div class="contact-detail-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Jl. Komjen. Dr. H. M. Yasin (Eks Jl. Boulevard), Kel. Lepo-Lepo, Kec. Baruga, Kota Kendari, Sulawesi Tenggara 93116</span>
+              </div>
+              <div class="contact-detail-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>Senin - Jumat: 07:00 - 14:00 WITA<br>Sabtu & Minggu: Libur</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Contact Numbers & Email -->
+          <div class="contact-info-card">
+            <h3 class="contact-info-card-title"><i class="fa-solid fa-address-book"></i> Telepon & Email</h3>
+            <div class="contact-info-detail">
+              <div class="contact-detail-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>+62 (401) 123-4567 (Kantor)<br>+62 823-4567-8901 (Humas WA)</span>
+              </div>
+              <div class="contact-detail-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>info@smkn6kendari.sch.id<br>ppdb@smkn6kendari.sch.id</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column Right: Message Form -->
+        <div class="contact-form-column">
+          <h2 class="form-title">Kirim Pesan Ke Sekolah</h2>
+          
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name" class="form-label">Nama Lengkap</label>
+              <input type="text" id="name" class="form-control" placeholder="Masukkan nama Anda..." required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Alamat Email</label>
+              <input type="email" id="email" class="form-control" placeholder="nama@email.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject" class="form-label">Subjek / Perihal</label>
+              <input type="text" id="subject" class="form-control" placeholder="Pendaftaran, Saran, Kerjasama..." required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">Pesan Anda</label>
+              <textarea id="message" rows="5" class="form-control" placeholder="Tuliskan pesan Anda secara detail..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Kirim Pesan Sekarang</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- MAP SECTION -->
+      <div class="map-container">
+        <!-- Google Map Iframe locating Lepo-Lepo, Baruga, Kendari -->
+        <iframe 
+          class="map-iframe"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15920.301323385718!2d122.502000!3d-4.015000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d9685e13589b251%3A0xe96280fa7c4a1eb4!2sJl.+Komjen.+Dr.+H.+M.+Yasin%2C+Lepo-Lepo%2C+Kec.+Baruga%2C+Kota+Kendari%2C+Sulawesi+Tenggara!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- FAQ ACCORDION SECTION -->
+      <div class="faq-section">
+        <div class="section-title-wrap">
+          <span class="section-subtitle">FAQ (Pertanyaan Umum)</span>
+          <h2 class="section-title">Informasi Paling Sering Ditanyakan</h2>
+          <div class="flourish">
+            <div class="flourish-diamond"></div>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <div class="faq-header">
+              <span class="faq-question">Bagaimana cara mendaftar sebagai siswa baru di SMKN 6 Kendari?</span>
+              <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-body">
+              <div class="faq-content">
+                Pendaftaran Penerimaan Peserta Didik Baru (PPDB) dilakukan secara online melalui portal resmi PPDB Provinsi Sulawesi Tenggara selama periode gelombang masuk (biasanya Mei - Juni). Untuk bantuan pendaftaran langsung, calon siswa dapat mengunjungi sekretariat PPDB di Kampus SMK Negeri 6 Kendari dengan membawa dokumen berupa fotokopi SKL/Ijazah, KK, Akta Kelahiran, dan pas foto.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <div class="faq-header">
+              <span class="faq-question">Apakah ada syarat kesehatan khusus untuk pendaftaran Jurusan Geologi Pertambangan?</span>
+              <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-body">
+              <div class="faq-content">
+                Ya. Dikarenakan aktivitas eksplorasi lapangan dan praktikum identifikasi batuan mineral, calon siswa jurusan Geologi Pertambangan dan Analisis Pengujian Laboratorium diwajibkan menyertakan Surat Keterangan Sehat dan **Bebas Buta Warna** (baik parsial maupun total) dari Puskesmas atau rumah sakit pemerintah.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <div class="faq-header">
+              <span class="faq-question">Apakah terdapat fasilitas program beasiswa bagi siswa kurang mampu atau berprestasi?</span>
+              <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-body">
+              <div class="faq-content">
+                Tentu. Kami menyediakan berbagai macam program bantuan, di antaranya Program Indonesia Pintar (PIP) dari Kemendikbudristek, beasiswa prestasi akademik & non-akademik, beasiswa bantuan khusus dari Komite Sekolah, serta kemudahan angsuran iuran komite bagi keluarga prasejahtera yang menyertakan surat keterangan tidak mampu (SKTM).
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <div class="faq-header">
+              <span class="faq-question">Di mana siswa melaksanakan Praktik Kerja Lapangan (PKL)?</span>
+              <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-body">
+              <div class="faq-content">
+                Siswa melaksanakan PKL di semester 4 atau 5 di dunia usaha/industri mitra (DUDI) yang relevan dengan jurusan masing-masing. Kami telah bermitra dengan instansi dinas ESDM Sultra, perusahaan tambang mineral regional, BUMN ketenagalistrikan (PLN), instansi jasa perbankan syariah/mikro, serta berbagai studio perangkat lunak dan agensi digital di Kota Kendari.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="assets/logo.jpg" alt="Logo SMKN 6" class="footer-logo-img">
+          <div class="footer-logo-text">
+            <span class="footer-logo-title">SMKN 6 KENDARI</span>
+            <span class="footer-logo-subtitle">Sekolah Vokasi Terbaik</span>
+          </div>
+        </div>
+        <p class="footer-about-text">SMK Negeri 6 Kendari berkomitmen tinggi dalam mencetak tenaga kerja terampil berstandar industri dengan penguatan budi pekerti yang berlandaskan kearifan lokal.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Tautan Cepat</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Beranda</a></li>
+          <li><a href="profil.html"><i class="fa-solid fa-chevron-right"></i> Profil Sekolah</a></li>
+          <li><a href="jurusan.html"><i class="fa-solid fa-chevron-right"></i> Kompetensi Keahlian</a></li>
+          <li><a href="galeri.html"><i class="fa-solid fa-chevron-right"></i> Galeri Kegiatan</a></li>
+          <li><a href="kontak.html"><i class="fa-solid fa-chevron-right"></i> Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Hubungi Kami</h4>
+        <ul class="footer-contacts">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Jl. Komjen. Dr. H. M. Yasin, Lepo-Lepo, Kec. Baruga, Kota Kendari, Sulawesi Tenggara 93116</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <span>+62 (401) 123-4567<br>+62 823-4567-8901</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <span>info@smkn6kendari.sch.id<br>humas@smkn6kendari.sch.id</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 SMK Negeri 6 Kendari. All Rights Reserved. Designed for Classic Academic Excellence.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
