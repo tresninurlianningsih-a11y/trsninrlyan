@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Ekstrakurikuler SMK Negeri 6 Kendari">
+  <title>Ekstrakurikuler - SMK Negeri 6 Kendari</title>
+
+  <!-- CSS UTAMA WEBSITE -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* KHUSUS HALAMAN EKSTRAKURIKULER */
+
+    .extracurricular-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .extracurricular-card {
+      background-color: var(--color-white);
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .extracurricular-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-gold);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .extracurricular-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .extracurricular-info {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .extracurricular-icon {
+      width: 55px;
+      height: 55px;
+      margin: -52px auto 15px;
+      position: relative;
+      background-color: var(--color-gold);
+      color: var(--color-navy-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 3px solid var(--color-white);
+    }
+
+    .extracurricular-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--color-navy);
+      margin-bottom: 10px;
+    }
+
+    .extracurricular-desc {
+      font-size: 0.9rem;
+      color: var(--color-charcoal);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1024px) {
+      .extracurricular-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .extracurricular-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP CONTACT BAR -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+
+      <div class="top-contacts">
+        <span>
+          <i class="fa-solid fa-phone"></i>
+          +62 (401) 123-4567
+        </span>
+
+        <span>
+          <i class="fa-solid fa-envelope"></i>
+          info@smkn6kendari.sch.id
+        </span>
+
+        <span>
+          <i class="fa-solid fa-location-dot"></i>
+          Lepo-Lepo, Baruga, Kendari
+        </span>
+      </div>
+
+      <div class="top-socials">
+        <a href="#" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="#" aria-label="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a href="#" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="#" aria-label="Twitter">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <div class="container nav-container">
+
+      <a href="index.html" class="logo-link">
+
+        <img
+          src="logo smk6.png"
+          alt="Logo SMKN 6 Kendari"
+          class="logo-img"
+        >
+
+        <div class="logo-text">
+          <span class="logo-title">
+            SMK NEGERI 6 KENDARI
+          </span>
+
+          <span class="logo-subtitle">
+            Unggul · Berbudaya · Berkarakter
+          </span>
+        </div>
+
+      </a>
+
+
+      <!-- MENU -->
+      <nav>
+        <ul class="nav-menu">
+
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">
+              Beranda
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="profil.html" class="nav-link">
+              Profil
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="jurusan.html" class="nav-link">
+              Kompetensi Keahlian
+            </a>
+          </li>
+
+          <!-- MENU EKSTRAKURIKULER -->
+          <li class="nav-item active">
+            <a href="ekstrakurikuler.html" class="nav-link">
+              Ekstrakurikuler
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="galeri.html" class="nav-link">
+              Galeri
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="kontak.html" class="nav-link">
+              Kontak
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+
+      <!-- MOBILE MENU -->
+      <button class="menu-toggle" aria-label="Buka Menu">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- PAGE BANNER -->
+  <section class="page-banner">
+
+    <div class="container">
+
+      <h1 class="page-title">
+        Ekstrakurikuler
+      </h1>
+
+      <div class="breadcrumb">
+
+        <a href="index.html">
+          Beranda
+        </a>
+
+        <span class="breadcrumb-separator">
+          /
+        </span>
+
+        <span class="breadcrumb-current">
+          Ekstrakurikuler
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- EKSTRAKURIKULER -->
+  <section class="section-padding">
+
+    <div class="container">
+
+      <!-- JUDUL -->
+      <div class="section-title-wrap">
+
+        <span class="section-subtitle">
+          Kegiatan Siswa
+        </span>
+
+        <h2 class="section-title">
+          Pilihan Ekstrakurikuler
+        </h2>
+
+        <div class="flourish">
+          <div class="flourish-diamond"></div>
+        </div>
+
+        <p>
+          Berbagai kegiatan ekstrakurikuler yang dapat diikuti
+          oleh siswa SMK Negeri 6 Kendari untuk mengembangkan
+          bakat, minat, kreativitas, dan karakter.
+        </p>
+
+      </div>
+
+
+      <!-- GRID EKSTRAKURIKULER -->
+      <div class="extracurricular-grid">
+
+
+        <!-- OSIS -->
+        <div class="extracurricular-card">
+
+          <img
+            src="osis.jpeg"
+            alt="OSIS"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              OSIS
+            </h3>
+
+            <p class="extracurricular-desc">
+              Organisasi Siswa Intra Sekolah sebagai wadah
+              pengembangan kepemimpinan, tanggung jawab,
+              dan kemampuan berorganisasi siswa.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PMR -->
+        <div class="extracurricular-card">
+
+          <img
+            src="pmr.jpeg"
+            alt="PMR"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              PMR
+            </h3>
+
+            <p class="extracurricular-desc">
+              Palang Merah Remaja yang melatih kepedulian,
+              kemanusiaan, kesehatan, dan kesiapsiagaan
+              dalam membantu sesama.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PRAMUKA -->
+        <div class="extracurricular-card">
+
+          <img
+            src="pramuka.jpeg"
+            alt="Pramuka"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-campground"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              Pramuka
+            </h3>
+
+            <p class="extracurricular-desc">
+              Kegiatan kepanduan yang membentuk karakter,
+              kedisiplinan, kemandirian, kerja sama,
+              dan rasa tanggung jawab.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- SENI TARI -->
+        <div class="extracurricular-card">
+
+          <img
+            src="tari.jpeg"
+            alt="Seni Tari"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-music"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              Seni Tari
+            </h3>
+
+            <p class="extracurricular-desc">
+              Wadah bagi siswa untuk mengembangkan
+              kreativitas dan bakat seni melalui
+              berbagai jenis tarian tradisional dan modern.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- ROHIS -->
+        <div class="extracurricular-card">
+
+          <img
+            src="rohis.jpeg"
+            alt="Rohis"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-mosque"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              Rohis
+            </h3>
+
+            <p class="extracurricular-desc">
+              Kegiatan kerohanian Islam yang menjadi wadah
+              pembinaan keagamaan dan pengembangan karakter
+              siswa.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- JURNALISTIK -->
+        <div class="extracurricular-card">
+
+          <img
+            src="jurnalistik.jpeg"
+            alt="Jurnalistik"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-newspaper"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              Jurnalistik
+            </h3>
+
+            <p class="extracurricular-desc">
+              Mengembangkan kemampuan siswa dalam menulis,
+              mencari informasi, membuat berita, dan
+              menghasilkan karya jurnalistik kreatif.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- FUTSAL -->
+        <div class="extracurricular-card">
+
+          <img
+            src="futsal.jpeg"
+            alt="Futsal"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-futbol"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              Futsal
+            </h3>
+
+            <p class="extracurricular-desc">
+              Kegiatan olahraga yang melatih kebugaran,
+              keterampilan bermain, kerja sama tim,
+              sportivitas, dan disiplin.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PASKIB -->
+        <div class="extracurricular-card">
+
+          <img
+            src="paskib.jpeg"
+            alt="Paskib"
+            class="extracurricular-img"
+          >
+
+          <div class="extracurricular-info">
+
+            <div class="extracurricular-icon">
+              <i class="fa-solid fa-flag"></i>
+            </div>
+
+            <h3 class="extracurricular-title">
+              Paskibra
+            </h3>
+
+            <p class="extracurricular-desc">
+              Kegiatan yang melatih kedisiplinan,
+              kekompakan, ketegasan, jiwa kepemimpinan,
+              dan rasa cinta tanah air.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container footer-grid">
+
+
+      <!-- FOOTER ABOUT -->
+      <div>
+
+        <div class="footer-logo">
+
+          <img
+            src="assets/logo.jpg"
+            alt="Logo SMKN 6"
+            class="footer-logo-img"
+          >
+
+          <div class="footer-logo-text">
+
+            <span class="footer-logo-title">
+              SMKN 6 KENDARI
+            </span>
+
+            <span class="footer-logo-subtitle">
+              Sekolah Vokasi Terbaik
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="footer-about-text">
+          SMK Negeri 6 Kendari berkomitmen tinggi dalam
+          mencetak tenaga kerja terampil berstandar industri
+          dengan penguatan budi pekerti yang berlandaskan
+          kearifan lokal.
+        </p>
+
+
+        <div class="footer-socials">
+
+          <a href="#">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+          <a href="#">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+
+          <a href="#">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER LINKS -->
+      <div>
+
+        <h4 class="footer-title">
+          Tautan Cepat
+        </h4>
+
+        <ul class="footer-links">
+
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-chevron-right"></i>
+              Beranda
+            </a>
+          </li>
+
+          <li>
+            <a href="profil.html">
+              <i class="fa-solid fa-chevron-right"></i>
+              Profil Sekolah
+            </a>
+          </li>
+
+          <li>
+            <a href="jurusan.html">
+              <i class="fa-solid fa-chevron-right"></i>
+              Kompetensi Keahlian
+            </a>
+          </li>
+
+          <li>
+            <a href="ekstrakurikuler.html">
+              <i class="fa-solid fa-chevron-right"></i>
+              Ekstrakurikuler
+            </a>
+          </li>
+
+          <li>
+            <a href="galeri.html">
+              <i class="fa-solid fa-chevron-right"></i>
+              Galeri Kegiatan
+            </a>
+          </li>
+
+          <li>
+            <a href="kontak.html">
+              <i class="fa-solid fa-chevron-right"></i>
+              Hubungi Kami
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- FOOTER CONTACT -->
+      <div>
+
+        <h4 class="footer-title">
+          Hubungi Kami
+        </h4>
+
+        <ul class="footer-contacts">
+
+          <li>
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>
+              Jl. Komjen. Dr. H. M. Yasin,
+              Lepo-Lepo, Kec. Baruga,
+              Kota Kendari, Sulawesi Tenggara 93116
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <i class="fa-solid fa-phone"></i>
+
+            <span>
+              +62 (401) 123-4567
+              <br>
+              +62 823-4567-8901
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <i class="fa-solid fa-envelope"></i>
+
+            <span>
+              info@smkn6kendari.sch.id
+              <br>
+              humas@smkn6kendari.sch.id
+            </span>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+    <div class="container footer-bottom">
+
+      <p>
+        &copy; 2026 SMK Negeri 6 Kendari.
+        All Rights Reserved.
+        Designed for Classic Academic Excellence.
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+
+</body>
+</html>
+```
