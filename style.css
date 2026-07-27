@@ -1561,3 +1561,97 @@ textarea.form-control {
     margin-top: 8px;
   }
 }
+
+/* --- ADMINS GRID FOR HOME PAGE --- */
+.admins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.admin-card {
+  background-color: var(--color-white);
+  border: 1px solid rgba(197, 160, 89, 0.15);
+  border-radius: 8px;
+  padding: 35px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-gold);
+}
+
+.admin-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-navy) 0%, var(--color-gold) 100%);
+}
+
+.admin-card-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-navy-light) 0%, var(--color-navy-dark) 100%);
+  color: var(--color-gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-classic);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 auto 20px auto;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 4px 10px rgba(10, 25, 47, 0.15);
+}
+
+.admin-card-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.admin-card-role {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.admin-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-gray-light);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-navy-light);
+}
+
+.admin-card-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: #2ec4b6;
+  border-radius: 50%;
+}
+

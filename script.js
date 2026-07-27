@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initFAQs();
   initContactForm();
+  initDynamicContent();
 });
 
 /* --- NAVIGATION CONTROL --- */
@@ -203,7 +204,7 @@ function initContactForm() {
   const contactForm = document.getElementById('contactForm');
   
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const name = document.getElementById('name').value.trim();
@@ -216,22 +217,50 @@ function initContactForm() {
         return;
       }
 
-      // Simulating database storage or email dispatch
-      const feedbackData = {
-        name,
-        email,
-        subject,
-        message,
-        timestamp: new Date().toISOString()
-      };
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
+      }
 
-      // Save to local storage for demonstration
-      let submissions = JSON.parse(localStorage.getItem('smk6_submissions') || '[]');
-      submissions.push(feedbackData);
-      localStorage.setItem('smk6_submissions', JSON.stringify(submissions));
+      try {
+        const res = await fetch('/api/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, subject, message })
+        });
 
-      showFormAlert('Pesan Anda berhasil dikirim! Kami akan menghubungi Anda segera.', 'success');
-      contactForm.reset();
+        if (res.ok) {
+          showFormAlert('Pesan Anda berhasil dikirim! Kami akan menghubungi Anda segera.', 'success');
+          contactForm.reset();
+        } else {
+          const errData = await res.json();
+          showFormAlert(errData.error || 'Gagal mengirim pesan. Silakan coba lagi.', 'error');
+        }
+      } catch (err) {
+        console.error('API submission failed, falling back to local storage', err);
+        
+        // Fallback to local storage
+        const feedbackData = {
+          name,
+          email,
+          subject,
+          message,
+          timestamp: new Date().toISOString()
+        };
+        let submissions = JSON.parse(localStorage.getItem('smk6_submissions') || '[]');
+        submissions.push(feedbackData);
+        localStorage.setItem('smk6_submissions', JSON.stringify(submissions));
+        
+        showFormAlert('Pesan Anda disimpan secara lokal (offline).', 'success');
+        contactForm.reset();
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+      }
     });
   }
 }
@@ -279,3 +308,231 @@ function showFormAlert(message, type) {
     }
   }
 }
+
+/* --- DYNAMIC NEWS & ANNOUNCEMENTS LOAD --- */
+function initDynamicContent() {
+  const newsGrid = document.getElementById('newsGrid');
+  const announcementList = document.getElementById('announcementList');
+
+  if (newsGrid) {
+    fetch('/api/news')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          // Store data globally for modal reference
+          window.loadedNewsData = data;
+          
+          newsGrid.innerHTML = data.slice(0, 4).map(item => {
+            const imgSrc = (item.image && item.image.startsWith('uploaded_')) 
+              ? '/' + item.image 
+              : item.image;
+              
+            return `
+              <article class="news-item" style="opacity: 0; transform: translateY(25px);">
+                <img src="${imgSrc}" alt="${escapeHtml(item.title)}" class="news-item-img" onerror="this.src='osis.jpeg'">
+                <div class="news-item-content">
+                  <span class="news-date"><i class="fa-regular fa-calendar"></i> ${escapeHtml(item.date)}</span>
+                  <h4 class="news-title"><a href="#" onclick="openNewsDetail(event, '${item.id}')">${escapeHtml(item.title)}</a></h4>
+                  <p class="news-excerpt">${escapeHtml(item.excerpt)}</p>
+                  <a href="#" class="major-card-link" style="font-size: 0.8rem;" onclick="openNewsDetail(event, '${item.id}')">Baca Detail <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+              </article>
+            `;
+          }).join('');
+
+          // Re-run scroll animations on newly created dynamic elements
+          initScrollAnimations();
+        }
+      })
+      .catch(err => console.warn('Gagal memuat berita dinamis, menggunakan fallback HTML.', err));
+  }
+
+  if (announcementList) {
+    fetch('/api/announcements')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          announcementList.innerHTML = data.slice(0, 5).map(item => `
+            <div class="announcement-item">
+              <span class="announcement-date">${escapeHtml(item.date)}</span>
+              <a href="${escapeHtml(item.link)}" class="announcement-text">${escapeHtml(item.text)}</a>
+            </div>
+          `).join('');
+        }
+      })
+      .catch(err => console.warn('Gagal memuat pengumuman dinamis, menggunakan fallback HTML.', err));
+  }
+
+  const adminsGrid = document.getElementById('adminsGrid');
+  if (adminsGrid) {
+    fetch('/api/admins')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          adminsGrid.innerHTML = data.map(admin => {
+            const initial = admin.username.charAt(0).toUpperCase();
+            return `
+              <div class="admin-card">
+                <div class="admin-card-avatar">${initial}</div>
+                <h3 class="admin-card-name">${escapeHtml(admin.username)}</h3>
+                <p class="admin-card-role">Administrator</p>
+                <div class="admin-card-status">Aktif</div>
+              </div>
+            `;
+          }).join('');
+        } else {
+          adminsGrid.innerHTML = `<div class="text-center" style="grid-column: 1/-1; color: var(--color-gray);">Tidak ada administrator terdaftar.</div>`;
+        }
+      })
+      .catch(err => {
+        console.warn('Gagal memuat daftar admin.', err);
+        adminsGrid.innerHTML = `
+          <div class="admin-card">
+            <div class="admin-card-avatar">A</div>
+            <h3 class="admin-card-name">Admin</h3>
+            <p class="admin-card-role">Super Administrator</p>
+            <div class="admin-card-status">Aktif</div>
+          </div>
+        `;
+      });
+  }
+
+  // Bind modal close trigger
+  const closeBtn = document.getElementById('closeNewsModalBtn');
+  const modal = document.getElementById('newsDetailModal');
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+}
+
+function openNewsDetail(event, newsId) {
+  event.preventDefault();
+  const modal = document.getElementById('newsDetailModal');
+  if (!modal || !window.loadedNewsData) return;
+
+  const newsItem = window.loadedNewsData.find(item => item.id === newsId);
+  if (!newsItem) return;
+
+  const modalImg = document.getElementById('modalNewsImg');
+  const modalDate = document.getElementById('modalNewsDate');
+  const modalTitle = document.getElementById('modalNewsTitle');
+  const modalText = document.getElementById('modalNewsText');
+
+  const imgSrc = (newsItem.image && newsItem.image.startsWith('uploaded_')) 
+    ? '/' + newsItem.image 
+    : newsItem.image;
+
+  modalImg.src = imgSrc;
+  modalImg.onerror = () => { modalImg.src = 'osis.jpeg'; };
+  modalDate.textContent = newsItem.date;
+  modalTitle.textContent = newsItem.title;
+  modalText.textContent = newsItem.content;
+
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden'; // lock background scroll
+}
+
+// HTML escape utility to prevent XSS
+function escapeHtml(text) {
+  if (!text) return '';
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+// --- ADMIN LOGIN MODAL CONTROLLER ---
+document.addEventListener('DOMContentLoaded', () => {
+  const loginBtn = document.getElementById('loginAdminBtn');
+  const footerLoginBtn = document.getElementById('footerLoginAdminBtn');
+  const loginModal = document.getElementById('adminLoginModal');
+  const closeLoginBtn = document.getElementById('closeLoginModalBtn');
+  const loginForm = document.getElementById('modalLoginForm');
+  const loginSubmit = document.getElementById('modalLoginSubmit');
+  const errorAlert = document.getElementById('loginErrorAlert');
+  const errorMessage = document.getElementById('loginErrorMessage');
+
+  if (loginModal) {
+    const openModal = (e) => {
+      e.preventDefault();
+      loginModal.style.display = 'flex';
+      setTimeout(() => {
+        loginModal.style.opacity = '1';
+      }, 50);
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      loginModal.style.opacity = '0';
+      setTimeout(() => {
+        loginModal.style.display = 'none';
+      }, 300);
+      document.body.style.overflow = '';
+      if (loginForm) loginForm.reset();
+      if (errorAlert) errorAlert.style.display = 'none';
+    };
+
+    if (loginBtn) loginBtn.addEventListener('click', openModal);
+    if (footerLoginBtn) footerLoginBtn.addEventListener('click', openModal);
+    if (closeLoginBtn) closeLoginBtn.addEventListener('click', closeModal);
+
+    loginModal.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        closeModal();
+      }
+    });
+
+    if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const username = document.getElementById('modalUsername').value.trim();
+        const password = document.getElementById('modalPassword').value.trim();
+
+        if (errorAlert) errorAlert.style.display = 'none';
+        
+        const originalText = loginSubmit.innerHTML;
+        loginSubmit.disabled = true;
+        loginSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memverifikasi...';
+
+        try {
+          const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.success) {
+            window.location.href = '/admin.html';
+          } else {
+            errorMessage.textContent = data.error || 'Username atau password salah';
+            errorAlert.style.display = 'block';
+            loginSubmit.disabled = false;
+            loginSubmit.innerHTML = originalText;
+          }
+        } catch (err) {
+          console.error(err);
+          errorMessage.textContent = 'Gagal terhubung ke server.';
+          errorAlert.style.display = 'block';
+          loginSubmit.disabled = false;
+          loginSubmit.innerHTML = originalText;
+        }
+      });
+    }
+  }
+});

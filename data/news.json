@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "date": "18 Juli 2026",
+    "title": "Upacara Pelepasan Siswa Praktik Kerja Lapangan (PKL) Angkatan XII",
+    "excerpt": "Kepala Sekolah resmi melepas sebanyak 210 siswa untuk mengikuti program PKL di berbagai perusahaan industri Sulawesi Tenggara.",
+    "content": "Kepala Sekolah resmi melepas sebanyak 210 siswa untuk mengikuti program Praktik Kerja Lapangan (PKL) Angkatan XII. Kegiatan ini bertujuan untuk membekali siswa dengan pengalaman nyata di dunia usaha dan dunia industri (DUDI).",
+    "image": "upacara pelepasan.jpeg"
+  },
+  {
+    "id": "2",
+    "date": "05 Juli 2026",
+    "title": "Siswa RPL SMKN 6 Kendari Meraih Juara I LKS Tingkat Provinsi",
+    "excerpt": "Selamat kepada tim Web Technologies SMKN 6 Kendari yang berhasil mengamankan tiket menuju Lomba Kompetensi Siswa nasional.",
+    "content": "Siswa kompetensi keahlian Rekayasa Perangkat Lunak (RPL) SMK Negeri 6 Kendari berhasil menorehkan prestasi gemilang dengan meraih Juara I dalam ajang Lomba Kompetensi Siswa (LKS) Tingkat Provinsi Sulawesi Tenggara bidang lomba Web Technologies.",
+    "image": "lomba LKS.jpeg"
+  }
+]
