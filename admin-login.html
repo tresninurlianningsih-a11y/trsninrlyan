@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Admin - SMK Negeri 6 Kendari</title>
+  <!-- Favicon / Logo Profil Website -->
+  <link rel="icon" type="image/png" href="logo smk6.png">
+  <link rel="shortcut icon" type="image/png" href="logo smk6.png">
+  <link rel="apple-touch-icon" href="logo smk6.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -212,6 +216,12 @@
   </div>
 
   <script>
+    // Helper to determine API Base URL
+    const getApiUrl = (endpoint) => {
+      if (window.location.port === '3001') return endpoint;
+      return `http://localhost:3001${endpoint}`;
+    };
+
     // Handle form submit
     const loginForm = document.getElementById('loginForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -231,7 +241,7 @@
       errorAlert.style.display = 'none';
 
       try {
-        const response = await fetch('/api/login', {
+        const response = await fetch(getApiUrl('/api/login'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -242,8 +252,12 @@
         const data = await response.json();
 
         if (response.ok && data.success) {
-          // Success, redirect to dashboard
-          window.location.href = '/admin.html';
+          // Success, redirect to dashboard on backend server
+          if (window.location.port !== '3001' && window.location.protocol.startsWith('http')) {
+            window.location.href = 'http://localhost:3001/admin.html';
+          } else {
+            window.location.href = 'admin.html';
+          }
         } else {
           // Show error message
           errorMessage.textContent = data.error || 'Username atau password salah';
@@ -253,7 +267,7 @@
         }
       } catch (err) {
         console.error(err);
-        errorMessage.textContent = 'Gagal terhubung ke server. Pastikan server aktif.';
+        errorMessage.textContent = 'Gagal terhubung ke server. Pastikan server Node.js aktif di port 3001.';
         errorAlert.style.display = 'block';
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;

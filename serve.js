@@ -100,8 +100,17 @@ function saveBase64Image(base64Str) {
   return filename;
 }
 
+function setCorsHeaders(req, res) {
+  const origin = req.headers.origin || '*';
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Cookie');
+}
+
 function jsonResponse(res, status, data) {
-  res.writeHead(status, { 'Content-Type': 'application/json' });
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.statusCode = status;
   res.end(JSON.stringify(data));
 }
 
@@ -121,6 +130,16 @@ function saveJsonData(file, data) {
 
 const server = http.createServer(async (req, res) => {
   console.log(`[${new Date().toLocaleTimeString('id-ID')}] ${req.method} ${req.url}`);
+
+  // Set CORS headers for all responses
+  setCorsHeaders(req, res);
+
+  // Handle CORS OPTIONS Preflight
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204;
+    res.end();
+    return;
+  }
 
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   const pathname = parsedUrl.pathname;
@@ -152,11 +171,8 @@ const server = http.createServer(async (req, res) => {
         if (valid) {
           const token = 'sess_' + Math.random().toString(36).substr(2) + Date.now().toString(36);
           sessions.add(token);
-          res.writeHead(200, {
-            'Set-Cookie': `session_token=${token}; Path=/; HttpOnly; Max-Age=7200`,
-            'Content-Type': 'application/json'
-          });
-          res.end(JSON.stringify({ success: true, storage: useMySQL ? 'MySQL' : 'JSON' }));
+          res.setHeader('Set-Cookie', `session_token=${token}; Path=/; HttpOnly; Max-Age=7200; SameSite=Lax`);
+          jsonResponse(res, 200, { success: true, storage: useMySQL ? 'MySQL' : 'JSON' });
         } else {
           jsonResponse(res, 401, { error: 'Username atau password salah' });
         }
@@ -170,11 +186,8 @@ const server = http.createServer(async (req, res) => {
         if (token) {
           sessions.delete(token);
         }
-        res.writeHead(200, {
-          'Set-Cookie': `session_token=; Path=/; HttpOnly; Max-Age=0`,
-          'Content-Type': 'application/json'
-        });
-        res.end(JSON.stringify({ success: true }));
+        res.setHeader('Set-Cookie', 'session_token=; Path=/; HttpOnly; Max-Age=0');
+        jsonResponse(res, 200, { success: true });
         return;
       }
 
@@ -715,6 +728,405 @@ const server = http.createServer(async (req, res) => {
         }
       }
 
+      // API GURU (Tabel guru)
+      if (pathname === '/api/guru') {
+        if (req.method === 'GET') {
+          if (useMySQL) {
+            try {
+              const list = await db.getGuru();
+              jsonResponse(res, 200, list);
+              return;
+            } catch (err) {
+              console.error('Failed getting guru:', err);
+            }
+          }
+          jsonResponse(res, 200, []);
+          return;
+        }
+
+        if (!isAuthenticated(req)) {
+          jsonResponse(res, 401, { error: 'Unauthorized' });
+          return;
+        }
+
+        if (req.method === 'POST') {
+          const body = await parseBody(req);
+          if (!body.nama_lengkap) {
+            jsonResponse(res, 400, { error: 'Nama lengkap wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.createGuru(body);
+            jsonResponse(res, 201, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'PUT') {
+          const body = await parseBody(req);
+          if (!body.id || !body.nama_lengkap) {
+            jsonResponse(res, 400, { error: 'ID dan Nama lengkap wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.updateGuru(body);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'DELETE') {
+          const id = parsedUrl.searchParams.get('id');
+          if (useMySQL && id) {
+            await db.deleteGuru(id);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 400, { error: 'Invalid request' });
+          return;
+        }
+      }
+
+      // API SISWA (Tabel siswa)
+      if (pathname === '/api/siswa') {
+        if (req.method === 'GET') {
+          if (useMySQL) {
+            try {
+              const list = await db.getSiswa();
+              jsonResponse(res, 200, list);
+              return;
+            } catch (err) {
+              console.error('Failed getting siswa:', err);
+            }
+          }
+          jsonResponse(res, 200, []);
+          return;
+        }
+
+        if (!isAuthenticated(req)) {
+          jsonResponse(res, 401, { error: 'Unauthorized' });
+          return;
+        }
+
+        if (req.method === 'POST') {
+          const body = await parseBody(req);
+          if (!body.nis || !body.nama_lengkap) {
+            jsonResponse(res, 400, { error: 'NIS dan Nama lengkap wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.createSiswa(body);
+            jsonResponse(res, 201, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'PUT') {
+          const body = await parseBody(req);
+          if (!body.id || !body.nama_lengkap) {
+            jsonResponse(res, 400, { error: 'ID dan Nama wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.updateSiswa(body);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'DELETE') {
+          const id = parsedUrl.searchParams.get('id');
+          if (useMySQL && id) {
+            await db.deleteSiswa(id);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 400, { error: 'Invalid request' });
+          return;
+        }
+      }
+
+      // API EKSTRAKURIKULER (Tabel ekstrakurikuler)
+      if (pathname === '/api/ekstrakurikuler') {
+        if (req.method === 'GET') {
+          if (useMySQL) {
+            try {
+              const list = await db.getEkstrakurikuler();
+              jsonResponse(res, 200, list);
+              return;
+            } catch (err) {
+              console.error('Failed getting ekstrakurikuler:', err);
+            }
+          }
+          jsonResponse(res, 200, []);
+          return;
+        }
+
+        if (!isAuthenticated(req)) {
+          jsonResponse(res, 401, { error: 'Unauthorized' });
+          return;
+        }
+
+        if (req.method === 'POST') {
+          const body = await parseBody(req);
+          if (!body.nama_ekskul) {
+            jsonResponse(res, 400, { error: 'Nama ekskul wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.createEkstrakurikuler(body);
+            jsonResponse(res, 201, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'PUT') {
+          const body = await parseBody(req);
+          if (!body.id || !body.nama_ekskul) {
+            jsonResponse(res, 400, { error: 'ID dan Nama ekskul wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.updateEkstrakurikuler(body);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'DELETE') {
+          const id = parsedUrl.searchParams.get('id');
+          if (useMySQL && id) {
+            await db.deleteEkstrakurikuler(id);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 400, { error: 'Invalid request' });
+          return;
+        }
+      }
+
+      // API GALERI (Tabel galeri)
+      if (pathname === '/api/galeri') {
+        if (req.method === 'GET') {
+          if (useMySQL) {
+            try {
+              const list = await db.getGaleri();
+              jsonResponse(res, 200, list);
+              return;
+            } catch (err) {
+              console.error('Failed getting galeri:', err);
+            }
+          }
+          jsonResponse(res, 200, []);
+          return;
+        }
+
+        if (!isAuthenticated(req)) {
+          jsonResponse(res, 401, { error: 'Unauthorized' });
+          return;
+        }
+
+        if (req.method === 'POST') {
+          const body = await parseBody(req);
+          if (!body.judul || !body.gambar) {
+            jsonResponse(res, 400, { error: 'Judul dan gambar wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.createGaleri(body);
+            jsonResponse(res, 201, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'DELETE') {
+          const id = parsedUrl.searchParams.get('id');
+          if (useMySQL && id) {
+            await db.deleteGaleri(id);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 400, { error: 'Invalid request' });
+          return;
+        }
+      }
+
+      // API PRESTASI (Tabel prestasi)
+      if (pathname === '/api/prestasi') {
+        if (req.method === 'GET') {
+          if (useMySQL) {
+            try {
+              const list = await db.getPrestasi();
+              jsonResponse(res, 200, list);
+              return;
+            } catch (err) {
+              console.error('Failed getting prestasi:', err);
+            }
+          }
+          jsonResponse(res, 200, []);
+          return;
+        }
+
+        if (!isAuthenticated(req)) {
+          jsonResponse(res, 401, { error: 'Unauthorized' });
+          return;
+        }
+
+        if (req.method === 'POST') {
+          const body = await parseBody(req);
+          if (!body.nama_prestasi) {
+            jsonResponse(res, 400, { error: 'Nama prestasi wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.createPrestasi(body);
+            jsonResponse(res, 201, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'DELETE') {
+          const id = parsedUrl.searchParams.get('id');
+          if (useMySQL && id) {
+            await db.deletePrestasi(id);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 400, { error: 'Invalid request' });
+          return;
+        }
+      }
+
+      // API AGENDA (Tabel agenda)
+      if (pathname === '/api/agenda') {
+        if (req.method === 'GET') {
+          if (useMySQL) {
+            try {
+              const list = await db.getAgenda();
+              jsonResponse(res, 200, list);
+              return;
+            } catch (err) {
+              console.error('Failed getting agenda:', err);
+            }
+          }
+          jsonResponse(res, 200, []);
+          return;
+        }
+
+        if (!isAuthenticated(req)) {
+          jsonResponse(res, 401, { error: 'Unauthorized' });
+          return;
+        }
+
+        if (req.method === 'POST') {
+          const body = await parseBody(req);
+          if (!body.judul) {
+            jsonResponse(res, 400, { error: 'Judul agenda wajib diisi' });
+            return;
+          }
+          if (useMySQL) {
+            await db.createAgenda(body);
+            jsonResponse(res, 201, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+
+        if (req.method === 'DELETE') {
+          const id = parsedUrl.searchParams.get('id');
+          if (useMySQL && id) {
+            await db.deleteAgenda(id);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 400, { error: 'Invalid request' });
+          return;
+        }
+      }
+
+      // API PROFIL SEKOLAH (Tabel profil_sekolah)
+      if (pathname === '/api/profil') {
+        if (req.method === 'GET') {
+          if (useMySQL) {
+            try {
+              const profil = await db.getProfilSekolah();
+              jsonResponse(res, 200, profil || {});
+              return;
+            } catch (err) {
+              console.error('Failed getting profil:', err);
+            }
+          }
+          jsonResponse(res, 200, { nama_sekolah: 'SMK Negeri 6 Kendari' });
+          return;
+        }
+
+        if (!isAuthenticated(req)) {
+          jsonResponse(res, 401, { error: 'Unauthorized' });
+          return;
+        }
+
+        if (req.method === 'PUT') {
+          const body = await parseBody(req);
+          if (useMySQL) {
+            await db.updateProfilSekolah(body);
+            jsonResponse(res, 200, { success: true });
+            return;
+          }
+          jsonResponse(res, 500, { error: 'MySQL not connected' });
+          return;
+        }
+      }
+
+      // API DASHBOARD STATS
+      if (pathname === '/api/stats' && req.method === 'GET') {
+        if (useMySQL) {
+          try {
+            const newsCount = (await db.getNews()).length;
+            const announcCount = (await db.getAnnouncements()).length;
+            const guruCount = (await db.getGuru()).length;
+            const siswaCount = (await db.getSiswa()).length;
+            const ekskulCount = (await db.getEkstrakurikuler()).length;
+            const galeriCount = (await db.getGaleri()).length;
+            const prestasiCount = (await db.getPrestasi()).length;
+            const userCount = (await db.getUsers()).length;
+
+            jsonResponse(res, 200, {
+              newsCount,
+              announcCount,
+              guruCount,
+              siswaCount,
+              ekskulCount,
+              galeriCount,
+              prestasiCount,
+              userCount,
+              databaseName: 'db_sekolah'
+            });
+            return;
+          } catch (err) {
+            console.error('Failed getting stats:', err);
+          }
+        }
+        jsonResponse(res, 200, { newsCount: 2, announcCount: 4, guruCount: 2, siswaCount: 0, ekskulCount: 4, galeriCount: 3, prestasiCount: 1, userCount: 1, databaseName: 'Offline JSON' });
+        return;
+      }
+
       jsonResponse(res, 404, { error: 'API Endpoint tidak ditemukan' });
       return;
 
@@ -786,7 +1198,7 @@ const server = http.createServer(async (req, res) => {
     console.log(`🏫 SMK Negeri 6 Kendari Web Server Running`);
     console.log(`🌐 URL: http://localhost:${PORT}`);
     console.log(`🔑 Admin Login: http://localhost:${PORT}/admin-login.html`);
-    console.log(`🗄️  Database Status: ${useMySQL ? '✅ Terhubung ke MySQL (Database: smk_kendari)' : '⚠️  MySQL Offline (Menggunakan fallback JSON)'}`);
+    console.log(`🗄️  Database Status: ${useMySQL ? `✅ Terhubung ke MySQL (Database: ${db.DB_CONFIG.database})` : '⚠️  MySQL Offline (Menggunakan fallback JSON)'}`);
     console.log(`💻 Default Admin Username: admin`);
     console.log(`🔑 Default Admin Password: adminsmk6`);
     console.log(`==================================================\n`);

@@ -7,6 +7,10 @@
   <meta name="description"
     content="Website Resmi SMK Negeri 6 Kendari. Unggul, Berbudaya, Berkarakter. Temukan profil sekolah, program keahlian, prestasi, dan pendaftaran siswa baru.">
   <title>SMK Negeri 6 Kendari - Website Resmi Sekolah</title>
+  <!-- Favicon / Logo Profil & Tab Browser -->
+  <link rel="icon" type="image/png" href="logo smk6.png">
+  <link rel="shortcut icon" type="image/png" href="logo smk6.png">
+  <link rel="apple-touch-icon" href="logo smk6.png">
   <link rel="stylesheet" href="style.css">
   <!-- FontAwesome Icons for Classic Emblems and Utilities -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,10 +32,12 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
+
     .news-modal.show {
       display: flex;
       opacity: 1;
     }
+
     .news-modal-content {
       background-color: var(--color-white);
       border: 1px solid var(--color-gold);
@@ -45,9 +51,11 @@
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
     }
+
     .news-modal.show .news-modal-content {
       transform: scale(1);
     }
+
     .news-modal-close {
       position: absolute;
       top: 15px;
@@ -66,20 +74,24 @@
       box-shadow: var(--shadow-sm);
       z-index: 10;
     }
+
     .news-modal-close:hover {
       background-color: var(--color-danger, #e71d36);
       color: var(--color-white);
       border-color: var(--color-danger, #e71d36);
     }
+
     .news-modal-img {
       width: 100%;
       max-height: 320px;
       object-fit: cover;
       border-bottom: 3px solid var(--color-gold);
     }
+
     .news-modal-body {
       padding: 25px 30px 30px 30px;
     }
+
     .news-modal-date {
       display: inline-block;
       font-size: 0.75rem;
@@ -92,6 +104,7 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
+
     .news-modal-title {
       font-family: var(--font-serif);
       font-size: 1.6rem;
@@ -99,6 +112,7 @@
       margin-bottom: 15px;
       line-height: 1.35;
     }
+
     .news-modal-text {
       font-size: 0.95rem;
       line-height: 1.75;
@@ -141,22 +155,28 @@
       <!-- Desktop Navigation Menu -->
       <nav>
         <ul class="nav-menu">
-          <li class="nav-item active"><a href="index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item active"><a href="index.html" class="nav-link"><i class="fa-solid fa-house" style="margin-right: 5px; font-size: 0.82rem;"></i> Beranda</a></li>
           <li class="nav-item"><a href="profil.html" class="nav-link">Profil</a></li>
           <li class="nav-item"><a href="jurusan.html" class="nav-link">Kompetensi Keahlian</a></li>
           <li class="nav-item"><a href="ekstrakurikuler.html" class="nav-link">Ekstrakurikuler</a></li>
           <li class="nav-item"><a href="galeri.html" class="nav-link">Galeri</a></li>
           <li class="nav-item"><a href="kontak.html" class="nav-link">Kontak</a></li>
-          <li class="nav-item"><a href="#" id="loginAdminBtn" class="nav-link"><i class="fa-solid fa-lock" style="font-size: 0.8rem; margin-right: 4px;"></i> Admin</a></li>
+          <li class="nav-item"><a href="#" id="loginAdminBtn" class="nav-link"><i class="fa-solid fa-lock"
+                style="font-size: 0.8rem; margin-right: 4px;"></i> Admin</a></li>
         </ul>
       </nav>
 
-      <!-- Mobile Menu Toggle -->
-      <button class="menu-toggle" aria-label="Buka Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <!-- Right Nav Actions (Theme Toggle & Mobile Menu) -->
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Ganti Tema Terang/Gelap" title="Ganti Tema">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="menu-toggle" aria-label="Buka Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -164,6 +184,9 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
+        <div class="hero-logo-wrap">
+          <img src="logo smk6.png" alt="Logo SMK Negeri 6 Kendari" class="hero-logo-img">
+        </div>
         <p class="hero-tagline">Selamat Datang di Portal Resmi</p>
         <h1 class="hero-title">Membentuk Generasi Unggul, Terampil & Berakhlak Mulia</h1>
         <p class="hero-desc">SMK Negeri 6 Kendari berkomitmen menyediakan pendidikan vokasi berkualitas tinggi demi
@@ -342,24 +365,27 @@
   </section>
 
   <!-- NEWS & ANNOUNCEMENTS SECTION -->
-  <section class="section-padding"
-    style="background-color: var(--color-white); border-top: 1px solid rgba(197, 160, 89, 0.15);">
+  <section class="section-padding bg-section-alt" style="border-top: 1px solid var(--border-color);">
     <div class="container">
       <div class="news-announcement-grid">
 
         <!-- Left: School News -->
         <div>
-          <h3 class="footer-title" style="color: var(--color-navy); font-size: 1.6rem; margin-bottom: 30px;">Berita &
-            Kegiatan Terbaru</h3>
+          <h3 class="section-title-sub"
+            style="font-family: var(--font-classic); color: var(--text-heading); font-size: 1.5rem; margin-bottom: 25px; border-bottom: 2px solid var(--color-gold); padding-bottom: 8px;">
+            Berita & Kegiatan Terbaru</h3>
           <div class="news-grid" id="newsGrid">
             <!-- Fallback content if API fails/offline -->
             <article class="news-item">
               <img src="upacara pelepasan.jpeg" alt="Pelepasan Siswa PKL" class="news-item-img">
               <div class="news-item-content">
                 <span class="news-date"><i class="fa-regular fa-calendar"></i> 18 Juli 2026</span>
-                <h4 class="news-title"><a href="#">Upacara Pelepasan Siswa Praktik Kerja Lapangan (PKL) Angkatan XII</a></h4>
-                <p class="news-excerpt">Kepala Sekolah resmi melepas sebanyak 210 siswa untuk mengikuti program PKL di berbagai perusahaan industri Sulawesi Tenggara.</p>
-                <a href="#" class="major-card-link" style="font-size: 0.8rem;">Baca Detail <i class="fa-solid fa-arrow-right"></i></a>
+                <h4 class="news-title"><a href="#">Upacara Pelepasan Siswa Praktik Kerja Lapangan (PKL) Angkatan XII</a>
+                </h4>
+                <p class="news-excerpt">Kepala Sekolah resmi melepas sebanyak 210 siswa untuk mengikuti program PKL di
+                  berbagai perusahaan industri Sulawesi Tenggara.</p>
+                <a href="#" class="major-card-link" style="font-size: 0.8rem;">Baca Detail <i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </article>
 
@@ -368,8 +394,10 @@
               <div class="news-item-content">
                 <span class="news-date"><i class="fa-regular fa-calendar"></i> 05 Juli 2026</span>
                 <h4 class="news-title"><a href="#">Siswa RPL SMKN 6 Kendari Meraih Juara I LKS Tingkat Provinsi</a></h4>
-                <p class="news-excerpt">Selamat kepada tim Web Technologies SMKN 6 Kendari yang berhasil mengamankan tiket menuju Lomba Kompetensi Siswa nasional.</p>
-                <a href="#" class="major-card-link" style="font-size: 0.8rem;">Baca Detail <i class="fa-solid fa-arrow-right"></i></a>
+                <p class="news-excerpt">Selamat kepada tim Web Technologies SMKN 6 Kendari yang berhasil mengamankan
+                  tiket menuju Lomba Kompetensi Siswa nasional.</p>
+                <a href="#" class="major-card-link" style="font-size: 0.8rem;">Baca Detail <i
+                    class="fa-solid fa-arrow-right"></i></a>
               </div>
             </article>
           </div>
@@ -379,26 +407,32 @@
         <div>
           <div class="announcement-box">
             <div class="announcement-title-wrap">
-              <i class="fa-solid fa-bullhorn"></i>
-              <h3 style="font-family: var(--font-classic); font-size: 1.15rem; color: var(--color-navy); font-weight: 700;">Pengumuman Resmi</h3>
+              <i class="fa-solid fa-bullhorn" style="color: var(--color-gold);"></i>
+              <h3
+                style="font-family: var(--font-classic); font-size: 1.15rem; color: var(--text-heading); font-weight: 700;">
+                Pengumuman Resmi</h3>
             </div>
             <div class="announcement-list" id="announcementList">
               <!-- Fallback content -->
               <div class="announcement-item">
                 <span class="announcement-date">20 Juli 2026</span>
-                <a href="#" class="announcement-text">Jadwal Pengambilan Kartu Ujian Semester Genap Tahun Ajaran 2025/2026.</a>
+                <a href="#" class="announcement-text">Jadwal Pengambilan Kartu Ujian Semester Genap Tahun Ajaran
+                  2025/2026.</a>
               </div>
               <div class="announcement-item">
                 <span class="announcement-date">15 Juli 2026</span>
-                <a href="#" class="announcement-text">Penerimaan Siswa Baru (PPDB) Jalur Prestasi & Afiliasi Gelombang Kedua.</a>
+                <a href="#" class="announcement-text">Penerimaan Siswa Baru (PPDB) Jalur Prestasi & Afiliasi Gelombang
+                  Kedua.</a>
               </div>
               <div class="announcement-item">
                 <span class="announcement-date">10 Juli 2026</span>
-                <a href="#" class="announcement-text">Undangan Rapat Komite Orang Tua Siswa Kelas X dan XI mengenai Rencana Kerja Tahunan.</a>
+                <a href="#" class="announcement-text">Undangan Rapat Komite Orang Tua Siswa Kelas X dan XI mengenai
+                  Rencana Kerja Tahunan.</a>
               </div>
               <div class="announcement-item">
                 <span class="announcement-date">01 Juli 2026</span>
-                <a href="#" class="announcement-text">Pengumuman Kelulusan Uji Sertifikasi Kompetensi (USK) Kerja sama LSP-P1.</a>
+                <a href="#" class="announcement-text">Pengumuman Kelulusan Uji Sertifikasi Kompetensi (USK) Kerja sama
+                  LSP-P1.</a>
               </div>
             </div>
           </div>
@@ -409,7 +443,8 @@
   </section>
 
   <!-- ADMIN LIST SECTION -->
-  <section class="section-padding bg-ivory" id="adminListSection" style="border-top: 1px solid rgba(197, 160, 89, 0.15);">
+  <section class="section-padding bg-ivory" id="adminListSection"
+    style="border-top: 1px solid rgba(197, 160, 89, 0.15);">
     <div class="container">
       <div class="section-title-wrap">
         <span class="section-subtitle">Pengelola Website</span>
@@ -467,7 +502,8 @@
           <li><a href="jurusan.html"><i class="fa-solid fa-chevron-right"></i> Kompetensi Keahlian</a></li>
           <li><a href="galeri.html"><i class="fa-solid fa-chevron-right"></i> Galeri Kegiatan</a></li>
           <li><a href="kontak.html"><i class="fa-solid fa-chevron-right"></i> Hubungi Kami</a></li>
-          <li><a href="#" id="footerLoginAdminBtn"><i class="fa-solid fa-lock" style="font-size: 0.8rem; margin-right: 4px;"></i> Login Admin</a></li>
+          <li><a href="#" id="footerLoginAdminBtn"><i class="fa-solid fa-lock"
+                style="font-size: 0.8rem; margin-right: 4px;"></i> Login Admin</a></li>
         </ul>
       </div>
 
@@ -500,7 +536,8 @@
   <!-- News Detail Modal -->
   <div id="newsDetailModal" class="news-modal">
     <div class="news-modal-content">
-      <button class="news-modal-close" id="closeNewsModalBtn" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+      <button class="news-modal-close" id="closeNewsModalBtn" aria-label="Tutup"><i
+          class="fa-solid fa-xmark"></i></button>
       <img id="modalNewsImg" src="" alt="" class="news-modal-img">
       <div class="news-modal-body">
         <span id="modalNewsDate" class="news-modal-date"></span>
@@ -512,35 +549,55 @@
 
   <!-- Admin Login Modal -->
   <div id="adminLoginModal" class="news-modal" style="display: none; justify-content: center; align-items: center;">
-    <div class="news-modal-content" style="max-width: 400px; background-color: var(--color-navy-dark); border-color: var(--color-gold); border-radius: 12px; padding: 35px 30px;">
-      <button class="news-modal-close" id="closeLoginModalBtn" aria-label="Tutup" style="color: var(--color-gold); background: transparent; border-color: rgba(197, 160, 89, 0.3);"><i class="fa-solid fa-xmark"></i></button>
+    <div class="news-modal-content"
+      style="max-width: 400px; background-color: var(--color-navy-dark); border-color: var(--color-gold); border-radius: 12px; padding: 35px 30px;">
+      <button class="news-modal-close" id="closeLoginModalBtn" aria-label="Tutup"
+        style="color: var(--color-gold); background: transparent; border-color: rgba(197, 160, 89, 0.3);"><i
+          class="fa-solid fa-xmark"></i></button>
       <div style="text-align: center; margin-bottom: 25px;">
-        <img src="logo smk6.png" alt="Logo" style="width: 75px; height: 75px; margin: 0 auto 15px auto; object-fit: contain;">
-        <h3 style="font-family: var(--font-classic); color: var(--color-gold-light); font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; letter-spacing: 1px;">PORTAL ADMIN</h3>
-        <p style="color: var(--color-gray); font-size: 0.8rem; font-family: var(--font-sans);">Masuk ke Dashboard SMK Negeri 6 Kendari</p>
+        <img src="logo smk6.png" alt="Logo"
+          style="width: 75px; height: 75px; margin: 0 auto 15px auto; object-fit: contain;">
+        <h3
+          style="font-family: var(--font-classic); color: var(--color-gold-light); font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; letter-spacing: 1px;">
+          PORTAL ADMIN</h3>
+        <p style="color: var(--color-gray); font-size: 0.8rem; font-family: var(--font-sans);">Masuk ke Dashboard SMK
+          Negeri 6 Kendari</p>
       </div>
-      
+
       <!-- Error Alert -->
-      <div id="loginErrorAlert" style="display: none; background: rgba(220, 53, 69, 0.15); border: 1px solid rgba(220, 53, 69, 0.4); color: #ff8585; padding: 10px 12px; border-radius: 6px; margin-bottom: 20px; font-size: 0.85rem; text-align: left; font-family: var(--font-sans);">
-        <i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i> <span id="loginErrorMessage">Username atau password salah</span>
+      <div id="loginErrorAlert"
+        style="display: none; background: rgba(220, 53, 69, 0.15); border: 1px solid rgba(220, 53, 69, 0.4); color: #ff8585; padding: 10px 12px; border-radius: 6px; margin-bottom: 20px; font-size: 0.85rem; text-align: left; font-family: var(--font-sans);">
+        <i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i> <span
+          id="loginErrorMessage">Username atau password salah</span>
       </div>
 
       <form id="modalLoginForm">
         <div style="margin-bottom: 20px; text-align: left;">
-          <label style="display: block; color: var(--color-gold); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-sans); text-transform: uppercase;" for="modalUsername">Username</label>
+          <label
+            style="display: block; color: var(--color-gold); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-sans); text-transform: uppercase;"
+            for="modalUsername">Username</label>
           <div style="position: relative;">
-            <i class="fa-solid fa-user" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--color-gold); font-size: 0.9rem;"></i>
-            <input type="text" id="modalUsername" placeholder="Masukkan username" required autocomplete="username" style="width: 100%; padding: 12px 15px 12px 45px; background: rgba(10, 25, 47, 0.6); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 6px; color: var(--color-white); font-size: 0.9rem; font-family: var(--font-sans); outline: none; transition: var(--transition-fast);">
+            <i class="fa-solid fa-user"
+              style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--color-gold); font-size: 0.9rem;"></i>
+            <input type="text" id="modalUsername" placeholder="Masukkan username" required autocomplete="username"
+              style="width: 100%; padding: 12px 15px 12px 45px; background: rgba(10, 25, 47, 0.6); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 6px; color: var(--color-white); font-size: 0.9rem; font-family: var(--font-sans); outline: none; transition: var(--transition-fast);">
           </div>
         </div>
         <div style="margin-bottom: 25px; text-align: left;">
-          <label style="display: block; color: var(--color-gold); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-sans); text-transform: uppercase;" for="modalPassword">Password</label>
+          <label
+            style="display: block; color: var(--color-gold); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-sans); text-transform: uppercase;"
+            for="modalPassword">Password</label>
           <div style="position: relative;">
-            <i class="fa-solid fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--color-gold); font-size: 0.9rem;"></i>
-            <input type="password" id="modalPassword" placeholder="Masukkan password" required autocomplete="current-password" style="width: 100%; padding: 12px 15px 12px 45px; background: rgba(10, 25, 47, 0.6); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 6px; color: var(--color-white); font-size: 0.9rem; font-family: var(--font-sans); outline: none; transition: var(--transition-fast);">
+            <i class="fa-solid fa-lock"
+              style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--color-gold); font-size: 0.9rem;"></i>
+            <input type="password" id="modalPassword" placeholder="Masukkan password" required
+              autocomplete="current-password"
+              style="width: 100%; padding: 12px 15px 12px 45px; background: rgba(10, 25, 47, 0.6); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 6px; color: var(--color-white); font-size: 0.9rem; font-family: var(--font-sans); outline: none; transition: var(--transition-fast);">
           </div>
         </div>
-        <button type="submit" id="modalLoginSubmit" style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%); border: none; border-radius: 6px; color: var(--color-navy-dark); font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: var(--transition-smooth); box-shadow: 0 4px 12px rgba(197, 160, 89, 0.2);">MASUK DASHBOARD</button>
+        <button type="submit" id="modalLoginSubmit"
+          style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%); border: none; border-radius: 6px; color: var(--color-navy-dark); font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: var(--transition-smooth); box-shadow: 0 4px 12px rgba(197, 160, 89, 0.2);">MASUK
+          DASHBOARD</button>
       </form>
     </div>
   </div>

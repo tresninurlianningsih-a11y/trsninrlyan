@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Admin - SMK Negeri 6 Kendari</title>
+  <!-- Favicon / Logo Profil Website -->
+  <link rel="icon" type="image/png" href="logo smk6.png">
+  <link rel="shortcut icon" type="image/png" href="logo smk6.png">
+  <link rel="apple-touch-icon" href="logo smk6.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -832,6 +836,36 @@
           <i class="fa-solid fa-bullhorn"></i> Kelola Pengumuman
         </a>
       </div>
+      <div class="sidebar-item" data-target="guru">
+        <a href="#" class="sidebar-link">
+          <i class="fa-solid fa-chalkboard-user"></i> Data Guru
+        </a>
+      </div>
+      <div class="sidebar-item" data-target="siswa">
+        <a href="#" class="sidebar-link">
+          <i class="fa-solid fa-user-graduate"></i> Data Siswa
+        </a>
+      </div>
+      <div class="sidebar-item" data-target="ekstrakurikuler">
+        <a href="#" class="sidebar-link">
+          <i class="fa-solid fa-futbol"></i> Ekstrakurikuler
+        </a>
+      </div>
+      <div class="sidebar-item" data-target="galeri">
+        <a href="#" class="sidebar-link">
+          <i class="fa-solid fa-images"></i> Galeri Foto
+        </a>
+      </div>
+      <div class="sidebar-item" data-target="prestasi">
+        <a href="#" class="sidebar-link">
+          <i class="fa-solid fa-trophy"></i> Data Prestasi
+        </a>
+      </div>
+      <div class="sidebar-item" data-target="profil">
+        <a href="#" class="sidebar-link">
+          <i class="fa-solid fa-school"></i> Profil Sekolah
+        </a>
+      </div>
       <div class="sidebar-item" data-target="messages">
         <a href="#" class="sidebar-link">
           <i class="fa-solid fa-envelope"></i> Pesan Masuk
@@ -859,7 +893,9 @@
       </button>
       
       <div class="admin-profile">
-        <div class="admin-avatar">A</div>
+        <div class="admin-avatar" style="background: #ffffff; border: 1.5px solid var(--color-gold); padding: 2px; overflow: hidden;">
+          <img src="logo smk6.png" alt="Logo SMKN 6" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
         <div class="admin-profile-info">
           <span class="admin-name">Administrator</span>
           <span class="admin-role">Super Admin</span>
@@ -1053,9 +1089,229 @@
             </table>
           </div>
         </div>
+      <!-- KELOLA GURU SECTION -->
+      <div id="guruSection" class="dashboard-section">
+        <div class="data-table-card">
+          <div class="card-header">
+            <h3 class="card-header-title">Daftar Pendidik & Tenaga Kependidikan (Tabel: guru)</h3>
+            <div class="card-header-actions">
+              <div class="search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="search-control" id="searchGuruInput" placeholder="Cari guru...">
+              </div>
+              <button class="btn-admin-action" id="addGuruBtn">
+                <i class="fa-solid fa-user-plus"></i> Tambah Guru
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>NIP</th>
+                  <th>Nama Lengkap</th>
+                  <th>Jabatan</th>
+                  <th>Kontak / Email</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="guruTableBody">
+                <tr>
+                  <td colspan="6" class="empty-row-msg">Loading data guru...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
-    </div>
+      <!-- KELOLA SISWA SECTION -->
+      <div id="siswaSection" class="dashboard-section">
+        <div class="data-table-card">
+          <div class="card-header">
+            <h3 class="card-header-title">Daftar Peserta Didik (Tabel: siswa)</h3>
+            <div class="card-header-actions">
+              <div class="search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="search-control" id="searchSiswaInput" placeholder="Cari siswa...">
+              </div>
+              <button class="btn-admin-action" id="addSiswaBtn">
+                <i class="fa-solid fa-user-plus"></i> Tambah Siswa
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>NIS / NISN</th>
+                  <th>Nama Lengkap</th>
+                  <th>L/P</th>
+                  <th>Email / HP</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="siswaTableBody">
+                <tr>
+                  <td colspan="6" class="empty-row-msg">Loading data siswa...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- KELOLA EKSTRAKURIKULER SECTION -->
+      <div id="ekstrakurikulerSection" class="dashboard-section">
+        <div class="data-table-card">
+          <div class="card-header">
+            <h3 class="card-header-title">Kegiatan Ekstrakurikuler (Tabel: ekstrakurikuler)</h3>
+            <div class="card-header-actions">
+              <button class="btn-admin-action" id="addEkskulBtn">
+                <i class="fa-solid fa-plus"></i> Tambah Ekskul
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Nama Ekskul</th>
+                  <th>Jadwal</th>
+                  <th>Lokasi</th>
+                  <th>Deskripsi</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="ekskulTableBody">
+                <tr>
+                  <td colspan="5" class="empty-row-msg">Loading data ekstrakurikuler...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- KELOLA GALERI SECTION -->
+      <div id="galeriSection" class="dashboard-section">
+        <div class="data-table-card">
+          <div class="card-header">
+            <h3 class="card-header-title">Galeri Dokumentasi Foto (Tabel: galeri)</h3>
+            <div class="card-header-actions">
+              <button class="btn-admin-action" id="addGaleriBtn">
+                <i class="fa-solid fa-plus"></i> Tambah Foto
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Foto</th>
+                  <th>Judul Foto</th>
+                  <th>Kategori</th>
+                  <th>Tanggal</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="galeriTableBody">
+                <tr>
+                  <td colspan="5" class="empty-row-msg">Loading data galeri...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- KELOLA PRESTASI SECTION -->
+      <div id="prestasiSection" class="dashboard-section">
+        <div class="data-table-card">
+          <div class="card-header">
+            <h3 class="card-header-title">Data Prestasi Siswa (Tabel: prestasi)</h3>
+            <div class="card-header-actions">
+              <button class="btn-admin-action" id="addPrestasiBtn">
+                <i class="fa-solid fa-trophy"></i> Tambah Prestasi
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Nama Prestasi</th>
+                  <th>Tingkat</th>
+                  <th>Peringkat</th>
+                  <th>Penyelenggara</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="prestasiTableBody">
+                <tr>
+                  <td colspan="5" class="empty-row-msg">Loading data prestasi...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- KELOLA PROFIL SEKOLAH SECTION -->
+      <div id="profilSection" class="dashboard-section">
+        <div class="data-table-card" style="padding: 25px;">
+          <h3 class="card-header-title" style="margin-bottom: 20px;"><i class="fa-solid fa-school" style="color: var(--color-gold); margin-right: 8px;"></i> Identitas & Profil Sekolah (Tabel: profil_sekolah)</h3>
+          <form id="profilForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div class="form-group-admin">
+                <label>Nama Sekolah</label>
+                <input type="text" id="profilNamaSekolah" class="form-control-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>NPSN</label>
+                <input type="text" id="profilNpsn" class="form-control-admin" required>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+              <div class="form-group-admin">
+                <label>Email Sekolah</label>
+                <input type="email" id="profilEmail" class="form-control-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Telepon</label>
+                <input type="text" id="profilTelepon" class="form-control-admin" required>
+              </div>
+              <div class="form-group-admin">
+                <label>Website</label>
+                <input type="text" id="profilWebsite" class="form-control-admin" required>
+              </div>
+            </div>
+            <div class="form-group-admin">
+              <label>Alamat Lengkap</label>
+              <input type="text" id="profilAlamat" class="form-control-admin" required>
+            </div>
+            <div class="form-group-admin">
+              <label>Visi Sekolah</label>
+              <textarea id="profilVisi" class="form-control-admin" rows="3" required></textarea>
+            </div>
+            <div class="form-group-admin">
+              <label>Misi Sekolah</label>
+              <textarea id="profilMisi" class="form-control-admin" rows="4" required></textarea>
+            </div>
+            <div class="form-group-admin">
+              <label>Sejarah Singkat</label>
+              <textarea id="profilSejarah" class="form-control-admin" rows="3"></textarea>
+            </div>
+            <div style="text-align: right; margin-top: 15px;">
+              <button type="submit" class="btn-admin-action" style="display: inline-flex; padding: 12px 24px; font-size: 1rem;">
+                <i class="fa-solid fa-floppy-disk"></i> Simpan Profil Sekolah
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
   </main>
 
   <!-- TOAST NOTIFICATION CONTAINER -->
@@ -1157,7 +1413,211 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn-modal cancel" onclick="closeModal('userModal')">Batal</button>
-          <button type="submit" class="btn-modal save">Simpan Admin</button>
+  <!-- MODAL: GURU FORM -->
+  <div class="modal-overlay" id="guruModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="guruModalTitle">Tambah Data Guru Baru</h3>
+        <button class="modal-close" onclick="closeModal('guruModal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="guruForm">
+        <input type="hidden" id="guruId">
+        <div class="modal-body">
+          <div class="form-group-admin">
+            <label>NIP Guru</label>
+            <input type="text" id="guruNip" class="form-control-admin" placeholder="Ketik NIP guru...">
+          </div>
+          <div class="form-group-admin">
+            <label>Nama Lengkap & Gelar</label>
+            <input type="text" id="guruNama" class="form-control-admin" placeholder="Contoh: Drs. H. Ahmad Fauzi, M.Pd." required>
+          </div>
+          <div class="form-group-admin">
+            <label>Jabatan</label>
+            <input type="text" id="guruJabatan" class="form-control-admin" placeholder="Contoh: Kepala Sekolah / Guru RPL" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Jenis Kelamin</label>
+            <select id="guruJk" class="form-control-admin">
+              <option value="L">Laki-laki (L)</option>
+              <option value="P">Perempuan (P)</option>
+            </select>
+          </div>
+          <div class="form-group-admin">
+            <label>Email Guru</label>
+            <input type="email" id="guruEmail" class="form-control-admin" placeholder="guru@smkn6kendari.sch.id">
+          </div>
+          <div class="form-group-admin">
+            <label>No. HP / WhatsApp</label>
+            <input type="text" id="guruNoHp" class="form-control-admin" placeholder="08xxxxxxxxxx">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-modal cancel" onclick="closeModal('guruModal')">Batal</button>
+          <button type="submit" class="btn-modal save">Simpan Guru</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: SISWA FORM -->
+  <div class="modal-overlay" id="siswaModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="siswaModalTitle">Tambah Data Siswa Baru</h3>
+        <button class="modal-close" onclick="closeModal('siswaModal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="siswaForm">
+        <input type="hidden" id="siswaId">
+        <div class="modal-body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="form-group-admin">
+              <label>NIS</label>
+              <input type="text" id="siswaNis" class="form-control-admin" required>
+            </div>
+            <div class="form-group-admin">
+              <label>NISN</label>
+              <input type="text" id="siswaNisn" class="form-control-admin">
+            </div>
+          </div>
+          <div class="form-group-admin">
+            <label>Nama Lengkap Siswa</label>
+            <input type="text" id="siswaNama" class="form-control-admin" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Jenis Kelamin</label>
+            <select id="siswaJk" class="form-control-admin">
+              <option value="L">Laki-laki (L)</option>
+              <option value="P">Perempuan (P)</option>
+            </select>
+          </div>
+          <div class="form-group-admin">
+            <label>Email Siswa</label>
+            <input type="email" id="siswaEmail" class="form-control-admin">
+          </div>
+          <div class="form-group-admin">
+            <label>No. HP</label>
+            <input type="text" id="siswaNoHp" class="form-control-admin">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-modal cancel" onclick="closeModal('siswaModal')">Batal</button>
+          <button type="submit" class="btn-modal save">Simpan Siswa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: EKSKUL FORM -->
+  <div class="modal-overlay" id="ekskulModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="ekskulModalTitle">Tambah Ekstrakurikuler Baru</h3>
+        <button class="modal-close" onclick="closeModal('ekskulModal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="ekskulForm">
+        <input type="hidden" id="ekskulId">
+        <div class="modal-body">
+          <div class="form-group-admin">
+            <label>Nama Ekstrakurikuler</label>
+            <input type="text" id="ekskulNama" class="form-control-admin" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Jadwal Latihan</label>
+            <input type="text" id="ekskulJadwal" class="form-control-admin" placeholder="Contoh: Jumat, 15.30 WITA" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Lokasi Kegiatan</label>
+            <input type="text" id="ekskulLokasi" class="form-control-admin" placeholder="Contoh: Lapangan Utama" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Deskripsi Singkat</label>
+            <textarea id="ekskulDeskripsi" class="form-control-admin" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-modal cancel" onclick="closeModal('ekskulModal')">Batal</button>
+          <button type="submit" class="btn-modal save">Simpan Ekskul</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: GALERI FORM -->
+  <div class="modal-overlay" id="galeriModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="galeriModalTitle">Tambah Foto Galeri</h3>
+        <button class="modal-close" onclick="closeModal('galeriModal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="galeriForm">
+        <input type="hidden" id="galeriId">
+        <div class="modal-body">
+          <div class="form-group-admin">
+            <label>Judul Foto / Dokumentasi</label>
+            <input type="text" id="galeriJudul" class="form-control-admin" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Nama Berkas Gambar</label>
+            <input type="text" id="galeriGambar" class="form-control-admin" placeholder="Contoh: upacara pelepasan.jpeg" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Kategori</label>
+            <select id="galeriKategori" class="form-control-admin">
+              <option value="Kegiatan">Kegiatan</option>
+              <option value="Prestasi">Prestasi</option>
+              <option value="Fasilitas">Fasilitas</option>
+              <option value="Akademik">Akademik</option>
+            </select>
+          </div>
+          <div class="form-group-admin">
+            <label>Deskripsi Foto</label>
+            <textarea id="galeriDeskripsi" class="form-control-admin" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-modal cancel" onclick="closeModal('galeriModal')">Batal</button>
+          <button type="submit" class="btn-modal save">Simpan Foto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PRESTASI FORM -->
+  <div class="modal-overlay" id="prestasiModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="prestasiModalTitle">Tambah Data Prestasi</h3>
+        <button class="modal-close" onclick="closeModal('prestasiModal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="prestasiForm">
+        <input type="hidden" id="prestasiId">
+        <div class="modal-body">
+          <div class="form-group-admin">
+            <label>Nama Prestasi / Perlombaan</label>
+            <input type="text" id="prestasiNama" class="form-control-admin" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="form-group-admin">
+              <label>Tingkat</label>
+              <input type="text" id="prestasiTingkat" class="form-control-admin" placeholder="Contoh: Provinsi / Nasional" required>
+            </div>
+            <div class="form-group-admin">
+              <label>Peringkat</label>
+              <input type="text" id="prestasiPeringkat" class="form-control-admin" placeholder="Contoh: Juara 1" required>
+            </div>
+          </div>
+          <div class="form-group-admin">
+            <label>Penyelenggara</label>
+            <input type="text" id="prestasiPenyelenggara" class="form-control-admin" required>
+          </div>
+          <div class="form-group-admin">
+            <label>Deskripsi Singkat</label>
+            <textarea id="prestasiDeskripsi" class="form-control-admin" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-modal cancel" onclick="closeModal('prestasiModal')">Batal</button>
+          <button type="submit" class="btn-modal save">Simpan Prestasi</button>
         </div>
       </form>
     </div>
@@ -1186,6 +1646,12 @@
     let announcementsData = [];
     let messagesData = [];
     let usersData = [];
+    let guruData = [];
+    let siswaData = [];
+    let ekskulData = [];
+    let galeriData = [];
+    let prestasiData = [];
+    let profilData = {};
 
     // Navigation and Mobile Responsive Toggle
     const sidebar = document.getElementById('sidebar');
@@ -1208,26 +1674,17 @@
     const sectionSub = document.getElementById('sectionSub');
 
     const menuDetails = {
-      'dashboard': {
-        title: 'Ringkasan Dashboard',
-        sub: 'Selamat datang kembali di panel administrasi portal berita & kegiatan.'
-      },
-      'news': {
-        title: 'Kelola Berita & Kegiatan',
-        sub: 'Tambahkan, perbarui, atau hapus liputan berita kegiatan sekolah.'
-      },
-      'announcements': {
-        title: 'Kelola Pengumuman Resmi',
-        sub: 'Manajemen rilis memo dan instruksi pengumuman internal sekolah.'
-      },
-      'messages': {
-        title: 'Pesan Masuk Hubungi Kami',
-        sub: 'Membaca dan memantau formulir masukan dari kontak publik website.'
-      },
-      'users': {
-        title: 'Kelola Akun Admin',
-        sub: 'Tambah, ubah, atau hapus akun pengguna yang dapat login ke dashboard.'
-      }
+      'dashboard': { title: 'Ringkasan Dashboard', sub: 'Terhubung ke database MySQL: db_sekolah' },
+      'news': { title: 'Kelola Berita & Kegiatan', sub: 'Tabel MySQL: berita' },
+      'announcements': { title: 'Kelola Pengumuman Resmi', sub: 'Tabel MySQL: pengumuman' },
+      'guru': { title: 'Kelola Data Guru', sub: 'Tabel MySQL: guru' },
+      'siswa': { title: 'Kelola Data Siswa', sub: 'Tabel MySQL: siswa' },
+      'ekstrakurikuler': { title: 'Kelola Ekstrakurikuler', sub: 'Tabel MySQL: ekstrakurikuler' },
+      'galeri': { title: 'Kelola Galeri Foto', sub: 'Tabel MySQL: galeri' },
+      'prestasi': { title: 'Kelola Data Prestasi', sub: 'Tabel MySQL: prestasi' },
+      'profil': { title: 'Kelola Profil Sekolah', sub: 'Tabel MySQL: profil_sekolah' },
+      'messages': { title: 'Pesan Masuk Hubungi Kami', sub: 'Membaca dan memantau formulir masukan dari kontak publik.' },
+      'users': { title: 'Kelola Akun Admin', sub: 'Tabel MySQL: users & roles' }
     };
 
     menuItems.forEach(item => {
@@ -1255,28 +1712,41 @@
         }
       });
 
-      sectionTitle.textContent = menuDetails[tabId].title;
-      sectionSub.textContent = menuDetails[tabId].sub;
+      if (menuDetails[tabId]) {
+        sectionTitle.textContent = menuDetails[tabId].title;
+        sectionSub.textContent = menuDetails[tabId].sub;
+      }
       sidebar.classList.remove('open');
       
-      // Load current section data
       refreshData();
     }
 
     // Refresh databases from API
     async function refreshData() {
       try {
-        const [newsRes, annRes, msgRes, usersRes] = await Promise.all([
-          fetch('/api/news').then(r => r.json()),
-          fetch('/api/announcements').then(r => r.json()),
-          fetch('/api/messages').then(r => r.json()),
-          fetch('/api/users').then(r => r.ok ? r.json() : [])
+        const [newsRes, annRes, msgRes, usersRes, guruRes, siswaRes, ekskulRes, galeriRes, prestasiRes, profilRes] = await Promise.all([
+          fetch('/api/news').then(r => r.json()).catch(() => []),
+          fetch('/api/announcements').then(r => r.json()).catch(() => []),
+          fetch('/api/messages').then(r => r.json()).catch(() => []),
+          fetch('/api/users').then(r => r.ok ? r.json() : []).catch(() => []),
+          fetch('/api/guru').then(r => r.json()).catch(() => []),
+          fetch('/api/siswa').then(r => r.json()).catch(() => []),
+          fetch('/api/ekstrakurikuler').then(r => r.json()).catch(() => []),
+          fetch('/api/galeri').then(r => r.json()).catch(() => []),
+          fetch('/api/prestasi').then(r => r.json()).catch(() => []),
+          fetch('/api/profil').then(r => r.json()).catch(() => ({}))
         ]);
 
-        newsData = newsRes;
-        announcementsData = annRes;
-        messagesData = msgRes;
-        usersData = usersRes;
+        newsData = newsRes || [];
+        announcementsData = annRes || [];
+        messagesData = msgRes || [];
+        usersData = usersRes || [];
+        guruData = guruRes || [];
+        siswaData = siswaRes || [];
+        ekskulData = ekskulRes || [];
+        galeriData = galeriRes || [];
+        prestasiData = prestasiRes || [];
+        profilData = profilRes || {};
 
         // Render Stats widgets
         document.getElementById('statsNewsCount').textContent = newsData.length;
@@ -1289,6 +1759,12 @@
         renderAnnouncementsTable();
         renderMessagesInbox();
         renderUsersTable();
+        renderGuruTable();
+        renderSiswaTable();
+        renderEkskulTable();
+        renderGaleriTable();
+        renderPrestasiTable();
+        renderProfilForm();
       } catch (err) {
         console.error(err);
         showToast('Gagal memuat data dari server.', 'error');
@@ -1305,24 +1781,15 @@
         ? '<i class="fa-solid fa-circle-check toast-icon"></i>' 
         : '<i class="fa-solid fa-circle-xmark toast-icon"></i>';
 
-      toast.innerHTML = `
-        ${icon}
-        <div>${message}</div>
-      `;
-
+      toast.innerHTML = `${icon}<div>${message}</div>`;
       container.appendChild(toast);
-      
-      // Trigger animation
       setTimeout(() => toast.classList.add('show'), 50);
-
-      // Remove after 3.5 seconds
       setTimeout(() => {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 400);
       }, 3500);
     }
 
-    // OPEN & CLOSE MODALS Helpers
     function openModal(modalId) {
       document.getElementById(modalId).classList.add('show');
     }
@@ -1332,11 +1799,9 @@
     }
 
     // --- RENDER FUNCTIONS ---
-
-    // 1. Dashboard Recent Messages
     function renderRecentMessages() {
       const tbody = document.getElementById('recentMessagesBody');
-      const recents = messagesData.slice(0, 4); // Top 4 newest
+      const recents = messagesData.slice(0, 4);
 
       if (recents.length === 0) {
         tbody.innerHTML = `<tr><td colspan="4" class="empty-row-msg">Tidak ada pesan masuk.</td></tr>`;
@@ -1358,15 +1823,13 @@
       }).join('');
     }
 
-    // 2. News Table Render
     function renderNewsTable() {
       const tbody = document.getElementById('newsTableBody');
-      const searchVal = document.getElementById('searchNewsInput').value.toLowerCase();
+      const searchVal = (document.getElementById('searchNewsInput')?.value || '').toLowerCase();
       
       const filtered = newsData.filter(item => 
-        item.title.toLowerCase().includes(searchVal) || 
-        item.excerpt.toLowerCase().includes(searchVal) || 
-        item.content.toLowerCase().includes(searchVal)
+        (item.title || '').toLowerCase().includes(searchVal) || 
+        (item.excerpt || '').toLowerCase().includes(searchVal)
       );
 
       if (filtered.length === 0) {
@@ -1375,11 +1838,7 @@
       }
 
       tbody.innerHTML = filtered.map(item => {
-        // Image display handling
-        const imgSrc = (item.image && item.image.startsWith('uploaded_')) 
-          ? '/' + item.image 
-          : item.image;
-
+        const imgSrc = (item.image && item.image.startsWith('uploaded_')) ? '/' + item.image : item.image;
         return `
           <tr>
             <td><img src="${imgSrc}" alt="" class="table-thumb" onerror="this.src='osis.jpeg'"></td>
@@ -1397,13 +1856,12 @@
       }).join('');
     }
 
-    // 3. Announcements Table Render
     function renderAnnouncementsTable() {
       const tbody = document.getElementById('annTableBody');
-      const searchVal = document.getElementById('searchAnnInput').value.toLowerCase();
+      const searchVal = (document.getElementById('searchAnnInput')?.value || '').toLowerCase();
 
       const filtered = announcementsData.filter(item => 
-        item.text.toLowerCase().includes(searchVal)
+        (item.text || '').toLowerCase().includes(searchVal)
       );
 
       if (filtered.length === 0) {
@@ -1411,33 +1869,29 @@
         return;
       }
 
-      tbody.innerHTML = filtered.map(item => {
-        return `
-          <tr>
-            <td><span class="badge-date">${escapeHtml(item.date)}</span></td>
-            <td style="font-weight: 500; color: var(--color-navy-light); max-width: 450px;">${escapeHtml(item.text)}</td>
-            <td><code style="font-size: 0.8rem; background-color: #f0edf6; padding: 2px 6px; border-radius: 4px;">${escapeHtml(item.link)}</code></td>
-            <td style="text-align: right;">
-              <div class="action-btn-group" style="justify-content: flex-end;">
-                <button class="btn-table-action edit" onclick="editAnnouncement('${item.id}')" title="Edit Pengumuman"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn-table-action delete" onclick="confirmDelete('announcement', '${item.id}')" title="Hapus Pengumuman"><i class="fa-solid fa-trash"></i></button>
-              </div>
-            </td>
-          </tr>
-        `;
-      }).join('');
+      tbody.innerHTML = filtered.map(item => `
+        <tr>
+          <td><span class="badge-date">${escapeHtml(item.date)}</span></td>
+          <td style="font-weight: 500; color: var(--color-navy-light); max-width: 450px;">${escapeHtml(item.text)}</td>
+          <td><code style="font-size: 0.8rem; background-color: #f0edf6; padding: 2px 6px; border-radius: 4px;">${escapeHtml(item.link)}</code></td>
+          <td style="text-align: right;">
+            <div class="action-btn-group" style="justify-content: flex-end;">
+              <button class="btn-table-action edit" onclick="editAnnouncement('${item.id}')" title="Edit Pengumuman"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="btn-table-action delete" onclick="confirmDelete('announcement', '${item.id}')" title="Hapus Pengumuman"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
     }
 
-    // 4. Messages Inbox Render
     function renderMessagesInbox() {
       const container = document.getElementById('messagesInboxList');
-      const searchVal = document.getElementById('searchMsgInput').value.toLowerCase();
+      const searchVal = (document.getElementById('searchMsgInput')?.value || '').toLowerCase();
 
       const filtered = messagesData.filter(msg => 
-        msg.name.toLowerCase().includes(searchVal) ||
-        msg.email.toLowerCase().includes(searchVal) ||
-        msg.subject.toLowerCase().includes(searchVal) ||
-        msg.message.toLowerCase().includes(searchVal)
+        (msg.name || '').toLowerCase().includes(searchVal) ||
+        (msg.subject || '').toLowerCase().includes(searchVal) ||
+        (msg.message || '').toLowerCase().includes(searchVal)
       );
 
       if (filtered.length === 0) {
@@ -1457,9 +1911,7 @@
                 <h4>${escapeHtml(msg.name)}</h4>
                 <span><i class="fa-regular fa-envelope"></i> ${escapeHtml(msg.email)}</span>
               </div>
-              <div class="msg-meta-date">
-                <i class="fa-regular fa-calendar"></i> ${date}
-              </div>
+              <div class="msg-meta-date"><i class="fa-regular fa-calendar"></i> ${date}</div>
             </div>
             <div class="message-subject">Subjek: ${escapeHtml(msg.subject)}</div>
             <div class="message-body-text">${escapeHtml(msg.message).replace(/\n/g, '<br>')}</div>
@@ -1473,178 +1925,372 @@
       }).join('');
     }
 
-    // --- FORM ACTIONS (ADD / EDIT / SUBMIT) ---
+    function renderGuruTable() {
+      const tbody = document.getElementById('guruTableBody');
+      if (!tbody) return;
+      const searchVal = (document.getElementById('searchGuruInput')?.value || '').toLowerCase();
 
-    // Dynamic Search Filtering Event Listeners
-    document.getElementById('searchNewsInput').addEventListener('input', renderNewsTable);
-    document.getElementById('searchAnnInput').addEventListener('input', renderAnnouncementsTable);
-    document.getElementById('searchMsgInput').addEventListener('input', renderMessagesInbox);
+      const filtered = guruData.filter(g => 
+        (g.nama_lengkap || '').toLowerCase().includes(searchVal) ||
+        (g.nip || '').toLowerCase().includes(searchVal) ||
+        (g.jabatan || '').toLowerCase().includes(searchVal)
+      );
 
-    // Image Upload Preview Logic
-    const imageInput = document.getElementById('newsImageFile');
-    const previewContainer = document.getElementById('newsImagePreviewContainer');
-    const previewImg = document.getElementById('newsImagePreview');
-    const previewPlaceholder = document.getElementById('newsImagePlaceholder');
-    let encodedImageBase64 = null;
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="empty-row-msg">Tidak ada data guru.</td></tr>`;
+        return;
+      }
 
-    imageInput.addEventListener('change', function() {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          encodedImageBase64 = e.target.result;
-          previewImg.src = encodedImageBase64;
-          previewImg.style.display = 'block';
-          previewPlaceholder.style.display = 'none';
-        }
-        reader.readAsDataURL(file);
+      tbody.innerHTML = filtered.map(g => `
+        <tr>
+          <td><code>${escapeHtml(g.nip || '-')}</code></td>
+          <td style="font-weight: 600; color: var(--color-navy);">${escapeHtml(g.nama_lengkap)}</td>
+          <td><span class="badge-date" style="background: #e8f5e9; color: #2e7d32;">${escapeHtml(g.jabatan || 'Guru')}</span></td>
+          <td>${escapeHtml(g.email || '-')}<br><small style="color: var(--color-gray);">${escapeHtml(g.no_hp || '-')}</small></td>
+          <td><span style="color: #2ec4b6; font-weight: 600;">${escapeHtml(g.status || 'aktif')}</span></td>
+          <td style="text-align: right;">
+            <div class="action-btn-group" style="justify-content: flex-end;">
+              <button class="btn-table-action edit" onclick="editGuru('${g.id}')"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="btn-table-action delete" onclick="confirmDelete('guru', '${g.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderSiswaTable() {
+      const tbody = document.getElementById('siswaTableBody');
+      if (!tbody) return;
+      const searchVal = (document.getElementById('searchSiswaInput')?.value || '').toLowerCase();
+
+      const filtered = siswaData.filter(s => 
+        (s.nama_lengkap || '').toLowerCase().includes(searchVal) ||
+        (s.nis || '').toLowerCase().includes(searchVal)
+      );
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="empty-row-msg">Tidak ada data siswa.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(s => `
+        <tr>
+          <td><code>${escapeHtml(s.nis || '-')} / ${escapeHtml(s.nisn || '-')}</code></td>
+          <td style="font-weight: 600; color: var(--color-navy);">${escapeHtml(s.nama_lengkap)}</td>
+          <td>${escapeHtml(s.jenis_kelamin || 'L')}</td>
+          <td>${escapeHtml(s.email || '-')}<br><small style="color: var(--color-gray);">${escapeHtml(s.no_hp || '-')}</small></td>
+          <td><span class="badge-date" style="background: #fff8e1; color: #f57f17;">${escapeHtml(s.status || 'aktif')}</span></td>
+          <td style="text-align: right;">
+            <div class="action-btn-group" style="justify-content: flex-end;">
+              <button class="btn-table-action edit" onclick="editSiswa('${s.id}')"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="btn-table-action delete" onclick="confirmDelete('siswa', '${s.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderEkskulTable() {
+      const tbody = document.getElementById('ekskulTableBody');
+      if (!tbody) return;
+
+      if (ekskulData.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="empty-row-msg">Tidak ada data ekstrakurikuler.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = ekskulData.map(e => `
+        <tr>
+          <td style="font-weight: 600; color: var(--color-navy);">${escapeHtml(e.nama_ekskul)}</td>
+          <td><span class="badge-date">${escapeHtml(e.jadwal || '-')}</span></td>
+          <td>${escapeHtml(e.lokasi || '-')}</td>
+          <td style="max-width: 250px; font-size: 0.85rem;">${escapeHtml(e.deskripsi || '-')}</td>
+          <td style="text-align: right;">
+            <div class="action-btn-group" style="justify-content: flex-end;">
+              <button class="btn-table-action edit" onclick="editEkskul('${e.id}')"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="btn-table-action delete" onclick="confirmDelete('ekstrakurikuler', '${e.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderGaleriTable() {
+      const tbody = document.getElementById('galeriTableBody');
+      if (!tbody) return;
+
+      if (galeriData.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="empty-row-msg">Tidak ada data galeri.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = galeriData.map(g => `
+        <tr>
+          <td><img src="${escapeHtml(g.gambar)}" alt="" class="table-thumb" onerror="this.src='osis.jpeg'"></td>
+          <td style="font-weight: 600; color: var(--color-navy);">${escapeHtml(g.judul)}</td>
+          <td><span class="badge-date">${escapeHtml(g.kategori || 'Kegiatan')}</span></td>
+          <td>${escapeHtml(g.tanggal || '-')}</td>
+          <td style="text-align: right;">
+            <div class="action-btn-group" style="justify-content: flex-end;">
+              <button class="btn-table-action delete" onclick="confirmDelete('galeri', '${g.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderPrestasiTable() {
+      const tbody = document.getElementById('prestasiTableBody');
+      if (!tbody) return;
+
+      if (prestasiData.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="empty-row-msg">Tidak ada data prestasi.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = prestasiData.map(p => `
+        <tr>
+          <td style="font-weight: 600; color: var(--color-navy);">${escapeHtml(p.nama_prestasi)}</td>
+          <td><span class="badge-date" style="background: #e1f5fe; color: #0288d1;">${escapeHtml(p.tingkat || '-')}</span></td>
+          <td><strong style="color: var(--color-gold-dark);">${escapeHtml(p.peringkat || '-')}</strong></td>
+          <td>${escapeHtml(p.penyelenggara || '-')}</td>
+          <td style="text-align: right;">
+            <div class="action-btn-group" style="justify-content: flex-end;">
+              <button class="btn-table-action delete" onclick="confirmDelete('prestasi', '${p.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderProfilForm() {
+      if (!profilData || !profilData.nama_sekolah) return;
+      document.getElementById('profilNamaSekolah').value = profilData.nama_sekolah || '';
+      document.getElementById('profilNpsn').value = profilData.npsn || '';
+      document.getElementById('profilEmail').value = profilData.email || '';
+      document.getElementById('profilTelepon').value = profilData.telepon || '';
+      document.getElementById('profilWebsite').value = profilData.website || '';
+      document.getElementById('profilAlamat').value = profilData.alamat || '';
+      document.getElementById('profilVisi').value = profilData.visi || '';
+      document.getElementById('profilMisi').value = profilData.misi || '';
+      document.getElementById('profilSejarah').value = profilData.sejarah || '';
+    }
+
+    // --- SEARCH LISTENERS ---
+    if (document.getElementById('searchNewsInput')) document.getElementById('searchNewsInput').addEventListener('input', renderNewsTable);
+    if (document.getElementById('searchAnnInput')) document.getElementById('searchAnnInput').addEventListener('input', renderAnnouncementsTable);
+    if (document.getElementById('searchMsgInput')) document.getElementById('searchMsgInput').addEventListener('input', renderMessagesInbox);
+    if (document.getElementById('searchGuruInput')) document.getElementById('searchGuruInput').addEventListener('input', renderGuruTable);
+    if (document.getElementById('searchSiswaInput')) document.getElementById('searchSiswaInput').addEventListener('input', renderSiswaTable);
+
+    // --- GURU MODAL & FORM HANDLER ---
+    document.getElementById('addGuruBtn')?.addEventListener('click', () => {
+      document.getElementById('guruModalTitle').textContent = 'Tambah Data Guru Baru';
+      document.getElementById('guruId').value = '';
+      document.getElementById('guruForm').reset();
+      openModal('guruModal');
+    });
+
+    function editGuru(id) {
+      const g = guruData.find(item => String(item.id) === String(id));
+      if (!g) return;
+      document.getElementById('guruModalTitle').textContent = 'Perbarui Data Guru';
+      document.getElementById('guruId').value = g.id;
+      document.getElementById('guruNip').value = g.nip || '';
+      document.getElementById('guruNama').value = g.nama_lengkap || '';
+      document.getElementById('guruJabatan').value = g.jabatan || '';
+      document.getElementById('guruJk').value = g.jenis_kelamin || 'L';
+      document.getElementById('guruEmail').value = g.email || '';
+      document.getElementById('guruNoHp').value = g.no_hp || '';
+      openModal('guruModal');
+    }
+
+    document.getElementById('guruForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('guruId').value;
+      const payload = {
+        id: id || undefined,
+        nip: document.getElementById('guruNip').value.trim(),
+        nama_lengkap: document.getElementById('guruNama').value.trim(),
+        jabatan: document.getElementById('guruJabatan').value.trim(),
+        jenis_kelamin: document.getElementById('guruJk').value,
+        email: document.getElementById('guruEmail').value.trim(),
+        no_hp: document.getElementById('guruNoHp').value.trim()
+      };
+      const method = id ? 'PUT' : 'POST';
+      const res = await fetch('/api/guru', { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast(id ? 'Data Guru diperbarui!' : 'Guru baru ditambahkan!');
+        closeModal('guruModal');
+        refreshData();
       } else {
-        resetImagePreview();
+        showToast('Gagal menyimpan data guru.', 'error');
       }
     });
 
-    function resetImagePreview() {
-      encodedImageBase64 = null;
-      previewImg.src = '';
-      previewImg.style.display = 'none';
-      previewPlaceholder.style.display = 'block';
-      imageInput.value = '';
-    }
-
-    // A. NEWS MODAL TRIGGERS
-    document.getElementById('addNewsBtn').addEventListener('click', () => {
-      document.getElementById('newsModalTitle').textContent = 'Tambah Berita Baru';
-      document.getElementById('newsId').value = '';
-      document.getElementById('newsForm').reset();
-      resetImagePreview();
-      openModal('newsModal');
+    // --- SISWA MODAL & FORM HANDLER ---
+    document.getElementById('addSiswaBtn')?.addEventListener('click', () => {
+      document.getElementById('siswaModalTitle').textContent = 'Tambah Data Siswa Baru';
+      document.getElementById('siswaId').value = '';
+      document.getElementById('siswaForm').reset();
+      openModal('siswaModal');
     });
 
-    function editNews(id) {
-      const item = newsData.find(n => n.id === id);
-      if (!item) return;
-
-      document.getElementById('newsModalTitle').textContent = 'Perbarui Berita';
-      document.getElementById('newsId').value = item.id;
-      document.getElementById('newsTitle').value = item.title;
-      document.getElementById('newsDate').value = item.date;
-      document.getElementById('newsExcerpt').value = item.excerpt;
-      document.getElementById('newsContent').value = item.content;
-      
-      resetImagePreview();
-      if (item.image) {
-        const imgSrc = item.image.startsWith('uploaded_') ? '/' + item.image : item.image;
-        previewImg.src = imgSrc;
-        previewImg.style.display = 'block';
-        previewPlaceholder.style.display = 'none';
-      }
-
-      openModal('newsModal');
+    function editSiswa(id) {
+      const s = siswaData.find(item => String(item.id) === String(id));
+      if (!s) return;
+      document.getElementById('siswaModalTitle').textContent = 'Perbarui Data Siswa';
+      document.getElementById('siswaId').value = s.id;
+      document.getElementById('siswaNis').value = s.nis || '';
+      document.getElementById('siswaNisn').value = s.nisn || '';
+      document.getElementById('siswaNama').value = s.nama_lengkap || '';
+      document.getElementById('siswaJk').value = s.jenis_kelamin || 'L';
+      document.getElementById('siswaEmail').value = s.email || '';
+      document.getElementById('siswaNoHp').value = s.no_hp || '';
+      openModal('siswaModal');
     }
 
-    // News Form Submit handler
-    document.getElementById('newsForm').addEventListener('submit', async (e) => {
+    document.getElementById('siswaForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      const id = document.getElementById('newsId').value;
-      const title = document.getElementById('newsTitle').value.trim();
-      const date = document.getElementById('newsDate').value.trim();
-      const excerpt = document.getElementById('newsExcerpt').value.trim();
-      const content = document.getElementById('newsContent').value.trim();
-
+      const id = document.getElementById('siswaId').value;
       const payload = {
         id: id || undefined,
-        title,
-        date: date || undefined,
-        excerpt,
-        content,
-        imageData: encodedImageBase64 || undefined
+        nis: document.getElementById('siswaNis').value.trim(),
+        nisn: document.getElementById('siswaNisn').value.trim(),
+        nama_lengkap: document.getElementById('siswaNama').value.trim(),
+        jenis_kelamin: document.getElementById('siswaJk').value,
+        email: document.getElementById('siswaEmail').value.trim(),
+        no_hp: document.getElementById('siswaNoHp').value.trim()
       };
-
       const method = id ? 'PUT' : 'POST';
-
-      try {
-        const res = await fetch('/api/news', {
-          method: method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (res.ok) {
-          showToast(id ? 'Berita berhasil diperbarui!' : 'Berita baru ditambahkan!');
-          closeModal('newsModal');
-          refreshData();
-        } else {
-          const errData = await res.json();
-          showToast(errData.error || 'Terjadi kesalahan sistem.', 'error');
-        }
-      } catch (err) {
-        console.error(err);
-        showToast('Gagal mengirim data berita ke server.', 'error');
+      const res = await fetch('/api/siswa', { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast(id ? 'Data Siswa diperbarui!' : 'Siswa baru ditambahkan!');
+        closeModal('siswaModal');
+        refreshData();
+      } else {
+        showToast('Gagal menyimpan data siswa.', 'error');
       }
     });
 
-    // B. ANNOUNCEMENTS MODAL TRIGGERS
-    document.getElementById('addAnnBtn').addEventListener('click', () => {
-      document.getElementById('annModalTitle').textContent = 'Tambah Pengumuman Baru';
-      document.getElementById('annId').value = '';
-      document.getElementById('annForm').reset();
-      openModal('annModal');
+    // --- EKSKUL MODAL & FORM HANDLER ---
+    document.getElementById('addEkskulBtn')?.addEventListener('click', () => {
+      document.getElementById('ekskulModalTitle').textContent = 'Tambah Ekstrakurikuler Baru';
+      document.getElementById('ekskulId').value = '';
+      document.getElementById('ekskulForm').reset();
+      openModal('ekskulModal');
     });
 
-    function editAnnouncement(id) {
-      const item = announcementsData.find(a => a.id === id);
-      if (!item) return;
-
-      document.getElementById('annModalTitle').textContent = 'Perbarui Pengumuman';
-      document.getElementById('annId').value = item.id;
-      document.getElementById('annText').value = item.text;
-      document.getElementById('annDate').value = item.date;
-      document.getElementById('annLink').value = item.link;
-
-      openModal('annModal');
+    function editEkskul(id) {
+      const e = ekskulData.find(item => String(item.id) === String(id));
+      if (!e) return;
+      document.getElementById('ekskulModalTitle').textContent = 'Perbarui Ekstrakurikuler';
+      document.getElementById('ekskulId').value = e.id;
+      document.getElementById('ekskulNama').value = e.nama_ekskul || '';
+      document.getElementById('ekskulJadwal').value = e.jadwal || '';
+      document.getElementById('ekskulLokasi').value = e.lokasi || '';
+      document.getElementById('ekskulDeskripsi').value = e.deskripsi || '';
+      openModal('ekskulModal');
     }
 
-    // Announcement Form Submit handler
-    document.getElementById('annForm').addEventListener('submit', async (e) => {
+    document.getElementById('ekskulForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      const id = document.getElementById('annId').value;
-      const text = document.getElementById('annText').value.trim();
-      const date = document.getElementById('annDate').value.trim();
-      const link = document.getElementById('annLink').value.trim();
-
+      const id = document.getElementById('ekskulId').value;
       const payload = {
         id: id || undefined,
-        text,
-        date: date || undefined,
-        link
+        nama_ekskul: document.getElementById('ekskulNama').value.trim(),
+        jadwal: document.getElementById('ekskulJadwal').value.trim(),
+        lokasi: document.getElementById('ekskulLokasi').value.trim(),
+        deskripsi: document.getElementById('ekskulDeskripsi').value.trim()
       };
-
       const method = id ? 'PUT' : 'POST';
-
-      try {
-        const res = await fetch('/api/announcements', {
-          method: method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (res.ok) {
-          showToast(id ? 'Pengumuman diperbarui!' : 'Pengumuman berhasil dirilis!');
-          closeModal('annModal');
-          refreshData();
-        } else {
-          const errData = await res.json();
-          showToast(errData.error || 'Gagal menyimpan pengumuman.', 'error');
-        }
-      } catch (err) {
-        console.error(err);
-        showToast('Gagal terhubung ke server.', 'error');
+      const res = await fetch('/api/ekstrakurikuler', { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast(id ? 'Ekskul diperbarui!' : 'Ekskul baru ditambahkan!');
+        closeModal('ekskulModal');
+        refreshData();
+      } else {
+        showToast('Gagal menyimpan ekskul.', 'error');
       }
     });
 
-    // C. DELETE WORKFLOWS (CONFIRMATION MODAL)
+    // --- GALERI MODAL & FORM HANDLER ---
+    document.getElementById('addGaleriBtn')?.addEventListener('click', () => {
+      document.getElementById('galeriModalTitle').textContent = 'Tambah Foto Galeri';
+      document.getElementById('galeriId').value = '';
+      document.getElementById('galeriForm').reset();
+      openModal('galeriModal');
+    });
+
+    document.getElementById('galeriForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = {
+        judul: document.getElementById('galeriJudul').value.trim(),
+        gambar: document.getElementById('galeriGambar').value.trim(),
+        kategori: document.getElementById('galeriKategori').value,
+        deskripsi: document.getElementById('galeriDeskripsi').value.trim()
+      };
+      const res = await fetch('/api/galeri', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast('Foto galeri berhasil ditambahkan!');
+        closeModal('galeriModal');
+        refreshData();
+      } else {
+        showToast('Gagal menambahkan foto galeri.', 'error');
+      }
+    });
+
+    // --- PRESTASI MODAL & FORM HANDLER ---
+    document.getElementById('addPrestasiBtn')?.addEventListener('click', () => {
+      document.getElementById('prestasiModalTitle').textContent = 'Tambah Data Prestasi';
+      document.getElementById('prestasiId').value = '';
+      document.getElementById('prestasiForm').reset();
+      openModal('prestasiModal');
+    });
+
+    document.getElementById('prestasiForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = {
+        nama_prestasi: document.getElementById('prestasiNama').value.trim(),
+        tingkat: document.getElementById('prestasiTingkat').value.trim(),
+        peringkat: document.getElementById('prestasiPeringkat').value.trim(),
+        penyelenggara: document.getElementById('prestasiPenyelenggara').value.trim(),
+        deskripsi: document.getElementById('prestasiDeskripsi').value.trim()
+      };
+      const res = await fetch('/api/prestasi', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast('Prestasi berhasil ditambahkan!');
+        closeModal('prestasiModal');
+        refreshData();
+      } else {
+        showToast('Gagal menambahkan prestasi.', 'error');
+      }
+    });
+
+    // --- PROFIL FORM SUBMIT ---
+    document.getElementById('profilForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = {
+        nama_sekolah: document.getElementById('profilNamaSekolah').value.trim(),
+        npsn: document.getElementById('profilNpsn').value.trim(),
+        email: document.getElementById('profilEmail').value.trim(),
+        telepon: document.getElementById('profilTelepon').value.trim(),
+        website: document.getElementById('profilWebsite').value.trim(),
+        alamat: document.getElementById('profilAlamat').value.trim(),
+        visi: document.getElementById('profilVisi').value.trim(),
+        misi: document.getElementById('profilMisi').value.trim(),
+        sejarah: document.getElementById('profilSejarah').value.trim()
+      };
+      const res = await fetch('/api/profil', { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast('Profil sekolah berhasil diperbarui!');
+        refreshData();
+      } else {
+        showToast('Gagal memperbarui profil sekolah.', 'error');
+      }
+    });
+
+    // --- DELETE WORKFLOWS ---
     let deleteTarget = { type: null, id: null };
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
 
@@ -1657,15 +2303,11 @@
       const { type, id } = deleteTarget;
       if (!type || !id) return;
 
-      let apiPath = '';
-      if (type === 'news') apiPath = `/api/news?id=${id}`;
-      else if (type === 'announcement') apiPath = `/api/announcements?id=${id}`;
-      else if (type === 'message') apiPath = `/api/messages?id=${id}`;
-      else if (type === 'user') apiPath = `/api/users?id=${id}`;
+      let apiPath = `/api/${type}?id=${id}`;
+      if (type === 'announcement') apiPath = `/api/announcements?id=${id}`;
 
       try {
         const res = await fetch(apiPath, { method: 'DELETE' });
-
         if (res.ok) {
           showToast('Data berhasil dihapus.');
           closeModal('deleteModal');
@@ -1680,13 +2322,93 @@
       }
     });
 
-    // E. USER MANAGEMENT WORKFLOWS
+    // NEWS & ANNOUNCEMENT MODAL HANDLERS
+    document.getElementById('addNewsBtn')?.addEventListener('click', () => {
+      document.getElementById('newsModalTitle').textContent = 'Tambah Berita Baru';
+      document.getElementById('newsId').value = '';
+      document.getElementById('newsForm').reset();
+      openModal('newsModal');
+    });
+
+    function editNews(id) {
+      const item = newsData.find(n => String(n.id) === String(id));
+      if (!item) return;
+      document.getElementById('newsModalTitle').textContent = 'Perbarui Berita';
+      document.getElementById('newsId').value = item.id;
+      document.getElementById('newsTitle').value = item.title || '';
+      document.getElementById('newsDate').value = item.date || '';
+      document.getElementById('newsExcerpt').value = item.excerpt || '';
+      document.getElementById('newsContent').value = item.content || '';
+      openModal('newsModal');
+    }
+
+    document.getElementById('newsForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('newsId').value;
+      const payload = {
+        id: id || undefined,
+        title: document.getElementById('newsTitle').value.trim(),
+        date: document.getElementById('newsDate').value.trim(),
+        excerpt: document.getElementById('newsExcerpt').value.trim(),
+        content: document.getElementById('newsContent').value.trim()
+      };
+      const method = id ? 'PUT' : 'POST';
+      const res = await fetch('/api/news', { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast(id ? 'Berita diperbarui!' : 'Berita ditambahkan!');
+        closeModal('newsModal');
+        refreshData();
+      } else {
+        showToast('Gagal menyimpan berita.', 'error');
+      }
+    });
+
+    document.getElementById('addAnnBtn')?.addEventListener('click', () => {
+      document.getElementById('annModalTitle').textContent = 'Tambah Pengumuman Baru';
+      document.getElementById('annId').value = '';
+      document.getElementById('annForm').reset();
+      openModal('annModal');
+    });
+
+    function editAnnouncement(id) {
+      const item = announcementsData.find(a => String(a.id) === String(id));
+      if (!item) return;
+      document.getElementById('annModalTitle').textContent = 'Perbarui Pengumuman';
+      document.getElementById('annId').value = item.id;
+      document.getElementById('annText').value = item.text || '';
+      document.getElementById('annDate').value = item.date || '';
+      document.getElementById('annLink').value = item.link || '#';
+      openModal('annModal');
+    }
+
+    document.getElementById('annForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('annId').value;
+      const payload = {
+        id: id || undefined,
+        text: document.getElementById('annText').value.trim(),
+        date: document.getElementById('annDate').value.trim(),
+        link: document.getElementById('annLink').value.trim()
+      };
+      const method = id ? 'PUT' : 'POST';
+      const res = await fetch('/api/announcements', { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast(id ? 'Pengumuman diperbarui!' : 'Pengumuman ditambahkan!');
+        closeModal('annModal');
+        refreshData();
+      } else {
+        showToast('Gagal menyimpan pengumuman.', 'error');
+      }
+    });
+
+    // USER MANAGEMENT WORKFLOWS
     function renderUsersTable() {
       const tbody = document.getElementById('userTableBody');
-      const searchVal = document.getElementById('searchUserInput').value.toLowerCase();
+      if (!tbody) return;
+      const searchVal = (document.getElementById('searchUserInput')?.value || '').toLowerCase();
 
       const filtered = usersData.filter(u => 
-        u.username.toLowerCase().includes(searchVal)
+        (u.username || '').toLowerCase().includes(searchVal)
       );
 
       if (filtered.length === 0) {
@@ -1695,22 +2417,16 @@
       }
 
       tbody.innerHTML = filtered.map(u => {
-        const date = new Date(u.created_at).toLocaleDateString('id-ID', {
-          day: 'numeric', month: 'long', year: 'numeric'
-        });
-        
         const isDefaultAdmin = u.username === 'admin';
-        const deleteBtnClass = isDefaultAdmin ? 'btn-table-action delete disabled' : 'btn-table-action delete';
-        const deleteAttr = isDefaultAdmin ? 'disabled style="opacity: 0.5; cursor: not-allowed;" title="Tidak dapat menghapus super admin"' : `onclick="confirmDelete('user', '${u.id}')" title="Hapus Admin"`;
-
+        const deleteAttr = isDefaultAdmin ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : `onclick="confirmDelete('users', '${u.id}')"`;
         return `
           <tr>
             <td style="font-weight: 600; color: var(--color-navy);"><i class="fa-solid fa-user-shield" style="margin-right: 8px; color: var(--color-gold-dark);"></i> ${escapeHtml(u.username)}</td>
-            <td><span class="badge-date">${date}</span></td>
+            <td><span class="badge-date">${escapeHtml(u.nama_role || 'Admin')}</span></td>
             <td style="text-align: right;">
               <div class="action-btn-group" style="justify-content: flex-end;">
-                <button class="btn-table-action edit" onclick="editUser('${u.id}')" title="Edit Password / Username"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="${deleteBtnClass}" ${deleteAttr}><i class="fa-solid fa-trash"></i></button>
+                <button class="btn-table-action edit" onclick="editUser('${u.id}')"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn-table-action delete" ${deleteAttr}><i class="fa-solid fa-trash"></i></button>
               </div>
             </td>
           </tr>
@@ -1718,119 +2434,60 @@
       }).join('');
     }
 
-    document.getElementById('searchUserInput').addEventListener('input', renderUsersTable);
-
-    document.getElementById('addUserBtn').addEventListener('click', () => {
+    document.getElementById('addUserBtn')?.addEventListener('click', () => {
       document.getElementById('userModalTitle').textContent = 'Tambah Administrator Baru';
       document.getElementById('userId').value = '';
       document.getElementById('userForm').reset();
       document.getElementById('userUsername').disabled = false;
       document.getElementById('userPassword').required = true;
-      document.getElementById('userPasswordLabel').textContent = 'Password';
-      document.getElementById('passwordHelp').textContent = 'Password minimal 6 karakter.';
       openModal('userModal');
     });
 
     function editUser(id) {
-      const item = usersData.find(u => String(u.id) === String(id));
-      if (!item) return;
-
-      document.getElementById('userModalTitle').textContent = 'Edit Akun Administrator';
-      document.getElementById('userId').value = item.id;
-      document.getElementById('userUsername').value = item.username;
-      
-      if (item.username === 'admin') {
-        document.getElementById('userUsername').disabled = true;
-      } else {
-        document.getElementById('userUsername').disabled = false;
-      }
-      
+      const u = usersData.find(item => String(item.id) === String(id));
+      if (!u) return;
+      document.getElementById('userModalTitle').textContent = 'Edit Administrator';
+      document.getElementById('userId').value = u.id;
+      document.getElementById('userUsername').value = u.username;
+      document.getElementById('userUsername').disabled = u.username === 'admin';
       document.getElementById('userPassword').value = '';
       document.getElementById('userPassword').required = false;
-      document.getElementById('userPasswordLabel').textContent = 'Password Baru (Kosongkan jika tidak diubah)';
-      document.getElementById('passwordHelp').textContent = 'Isi hanya jika ingin memperbarui password.';
-      
       openModal('userModal');
     }
 
-    document.getElementById('userForm').addEventListener('submit', async (e) => {
+    document.getElementById('userForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const id = document.getElementById('userId').value;
-      const username = document.getElementById('userUsername').value.trim();
-      const password = document.getElementById('userPassword').value.trim();
-
-      if (!id && !password) {
-        showToast('Password wajib diisi untuk pengguna baru.', 'error');
-        return;
-      }
-      
-      if (password && password.length < 6) {
-        showToast('Password minimal harus 6 karakter.', 'error');
-        return;
-      }
-
       const payload = {
         id: id || undefined,
-        username,
-        password: password || undefined
+        username: document.getElementById('userUsername').value.trim(),
+        password: document.getElementById('userPassword').value.trim() || undefined
       };
-
       const method = id ? 'PUT' : 'POST';
-
-      try {
-        const res = await fetch('/api/users', {
-          method: method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (res.ok) {
-          showToast(id ? 'Akun admin berhasil diperbarui!' : 'Akun admin baru ditambahkan!');
-          closeModal('userModal');
-          refreshData();
-        } else {
-          const errData = await res.json();
-          showToast(errData.error || 'Terjadi kesalahan sistem.', 'error');
-        }
-      } catch (err) {
-        console.error(err);
-        showToast('Gagal mengirim data admin ke server.', 'error');
+      const res = await fetch('/api/users', { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+      if (res.ok) {
+        showToast(id ? 'Admin diperbarui!' : 'Admin baru ditambahkan!');
+        closeModal('userModal');
+        refreshData();
+      } else {
+        showToast('Gagal menyimpan akun admin.', 'error');
       }
     });
 
-    // D. LOGOUT SESSIONS
-    document.getElementById('logoutBtn').addEventListener('click', async () => {
-      try {
-        const res = await fetch('/api/logout', { method: 'POST' });
-        if (res.ok) {
-          window.location.href = '/admin-login.html';
-        }
-      } catch (err) {
-        console.error(err);
-        showToast('Koneksi internet bermasalah saat keluar.', 'error');
-      }
+    // LOGOUT
+    document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+      const res = await fetch('/api/logout', { method: 'POST' });
+      if (res.ok) window.location.href = '/admin-login.html';
     });
 
-    // Helper HTML sanitizer to prevent XSS
     function escapeHtml(text) {
       if (!text) return '';
-      const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-      };
-      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
-    // INITIAL DATA LOAD
     document.addEventListener('DOMContentLoaded', () => {
       refreshData();
-      
-      // Auto refresh data every 60 seconds (optional)
-      setInterval(refreshData, 60000);
     });
   </script>
 </body>

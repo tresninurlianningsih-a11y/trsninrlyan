@@ -6,6 +6,10 @@
 
   <meta name="description" content="Ekstrakurikuler SMK Negeri 6 Kendari">
   <title>Ekstrakurikuler - SMK Negeri 6 Kendari</title>
+  <!-- Favicon / Logo Profil Website -->
+  <link rel="icon" type="image/png" href="logo smk6.png">
+  <link rel="shortcut icon" type="image/png" href="logo smk6.png">
+  <link rel="apple-touch-icon" href="logo smk6.png">
 
   <!-- CSS UTAMA WEBSITE -->
   <link rel="stylesheet" href="style.css">
@@ -204,13 +208,18 @@
 
 
       <!-- MOBILE MENU -->
-      <button class="menu-toggle" aria-label="Buka Menu">
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Ganti Tema Terang/Gelap" title="Ganti Tema">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="menu-toggle" aria-label="Buka Menu">
 
         <span></span>
         <span></span>
         <span></span>
 
       </button>
+      </div>
 
     </div>
   </header>
@@ -538,7 +547,7 @@
         <div class="footer-logo">
 
           <img
-            src="assets/logo.jpg"
+            src="logo smk6.png"
             alt="Logo SMKN 6"
             class="footer-logo-img"
           >
@@ -713,4 +722,3 @@
 
 </body>
 </html>
-```

@@ -1,9 +1,18 @@
 /**
  * SMK Negeri 6 Kendari - Classic Theme Script
- * Interactive features: Mobile Nav, Scroll Reveal, Gallery Filter, Lightbox, FAQs, Form handling
+ * Interactive features: Mobile Nav, Scroll Reveal, Gallery Filter, Lightbox, FAQs, Form handling, Dark/Light Mode
  */
 
+// Immediate Theme Initialization (Prevents theme flash on reload)
+(function () {
+  const savedTheme = localStorage.getItem('smk6_theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', initialTheme);
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initNavigation();
   initScrollAnimations();
   initGallery();
@@ -386,15 +395,26 @@ function initDynamicContent() {
       })
       .catch(err => {
         console.warn('Gagal memuat daftar admin.', err);
-        adminsGrid.innerHTML = `
-          <div class="admin-card">
-            <div class="admin-card-avatar">A</div>
-            <h3 class="admin-card-name">Admin</h3>
-            <p class="admin-card-role">Super Administrator</p>
-            <div class="admin-card-status">Aktif</div>
-          </div>
-        `;
       });
+  }
+
+  // Dynamic Ekstrakurikuler
+  const ekskulContainer = document.getElementById('ekskulDynamicGrid');
+  if (ekskulContainer) {
+    fetch('/api/ekstrakurikuler')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          ekskulContainer.innerHTML = data.map(item => `
+            <div class="classic-box">
+              <img src="${escapeHtml(item.foto || 'pramuka.jpeg')}" alt="${escapeHtml(item.nama_ekskul)}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;" onerror="this.src='pramuka.jpeg'">
+              <h3 style="color: var(--color-navy); font-size: 1.1rem; margin-bottom: 8px;">${escapeHtml(item.nama_ekskul)}</h3>
+              <p style="font-size: 0.85rem; color: var(--color-gray); margin-bottom: 10px;"><i class="fa-regular fa-clock"></i> ${escapeHtml(item.jadwal || '-')} | <i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.lokasi || '-')}</p>
+              <p style="font-size: 0.9rem; line-height: 1.5; color: var(--color-charcoal);">${escapeHtml(item.deskripsi)}</p>
+            </div>
+          `).join('');
+        }
+      }).catch(err => console.warn('Gagal memuat ekskul dinamis.', err));
   }
 
   // Bind modal close trigger
@@ -509,7 +529,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loginSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memverifikasi...';
 
         try {
-          const response = await fetch('/api/login', {
+          const apiUrl = window.location.port === '3001' ? '/api/login' : 'http://localhost:3001/api/login';
+          const response = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
@@ -518,7 +539,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const data = await response.json();
 
           if (response.ok && data.success) {
-            window.location.href = '/admin.html';
+            if (window.location.port !== '3001' && window.location.protocol.startsWith('http')) {
+              window.location.href = 'http://localhost:3001/admin.html';
+            } else {
+              window.location.href = 'admin.html';
+            }
           } else {
             errorMessage.textContent = data.error || 'Username atau password salah';
             errorAlert.style.display = 'block';
@@ -536,3 +561,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+/* ========================================================
+   THEME TOGGLE CONTROLLER (DARK & LIGHT MODES)
+   ======================================================== */
+function initTheme() {
+  const savedTheme = localStorage.getItem('smk6_theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+  applyTheme(currentTheme);
+  setupThemeButtons();
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('smk6_theme', theme);
+
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    if (theme === 'dark') {
+      btn.innerHTML = '<i class="fa-solid fa-sun" style="color: #dfb76c;"></i>';
+      btn.setAttribute('aria-label', 'Beralih ke Mode Terang');
+      btn.setAttribute('title', 'Beralih ke Mode Terang');
+    } else {
+      btn.innerHTML = '<i class="fa-solid fa-moon" style="color: #c5a059;"></i>';
+      btn.setAttribute('aria-label', 'Beralih ke Mode Gelap');
+      btn.setAttribute('title', 'Beralih ke Mode Gelap');
+    }
+  });
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  applyTheme(newTheme);
+}
+
+function setupThemeButtons() {
+  // If button is not already present in the DOM, dynamically inject it into .nav-container
+  const existingButtons = document.querySelectorAll('.theme-toggle-btn');
+  if (existingButtons.length === 0) {
+    const navContainer = document.querySelector('.nav-container');
+    if (navContainer) {
+      let navActions = navContainer.querySelector('.nav-actions');
+      if (!navActions) {
+        navActions = document.createElement('div');
+        navActions.className = 'nav-actions';
+        const menuToggle = navContainer.querySelector('.menu-toggle');
+        if (menuToggle) {
+          navContainer.insertBefore(navActions, menuToggle);
+          navActions.appendChild(menuToggle);
+        } else {
+          navContainer.appendChild(navActions);
+        }
+      }
+
+      const btn = document.createElement('button');
+      btn.id = 'themeToggleBtn';
+      btn.className = 'theme-toggle-btn';
+      btn.type = 'button';
+      navActions.insertBefore(btn, navActions.firstChild);
+    }
+  }
+
+  // Bind click handlers to all theme buttons
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.removeEventListener('click', toggleTheme);
+    btn.addEventListener('click', toggleTheme);
+  });
+
+  // Re-sync icon
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(currentTheme);
+}

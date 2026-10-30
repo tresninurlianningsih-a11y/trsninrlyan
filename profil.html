@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Profil SMK Negeri 6 Kendari. Pelajari sejarah berdirinya sekolah sejak 2013, visi misi, struktur organisasi, dan fasilitas sarana prasarana kami.">
   <title>Profil Sekolah - SMK Negeri 6 Kendari</title>
+  <!-- Favicon / Logo Profil Website -->
+  <link rel="icon" type="image/png" href="logo smk6.png">
+  <link rel="shortcut icon" type="image/png" href="logo smk6.png">
+  <link rel="apple-touch-icon" href="logo smk6.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -49,11 +53,16 @@
         </ul>
       </nav>
 
-      <button class="menu-toggle" aria-label="Buka Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Ganti Tema Terang/Gelap" title="Ganti Tema">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="menu-toggle" aria-label="Buka Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
